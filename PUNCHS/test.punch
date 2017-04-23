@@ -19,7 +19,7 @@ HYDROGEN    1.0     -0.8972880000      1.2495600000     -1.2197880000
    N31        6
            
  $END      
---- RHF ORBITALS --- GENERATED AT 23:39:28 21-APR-2017    
+--- RHF ORBITALS --- GENERATED AT 12:55:26 23-APR-2017    
 RHF/6-31G*//RHF/3-21G* silacyclopropane                                         
 E(RHF)=     -368.0867960551, E(NUC)=  106.3765167161,   10 ITERS
  $VEC

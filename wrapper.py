@@ -2,10 +2,11 @@ from __future__ import print_function
 
 import os
 import re
+import subprocess
 
 class Wrapper(object):
 
-    def __init__(self, jobname, __full__ = True, __clear__ = True, input_dir = 'INPUTS', output_dir = 'OUTPUTS', punch_dir = 'PUNCHS'):
+    def __init__(self, jobname, __full__ = False, __clear__ = True, input_dir = 'INPUTS', output_dir = 'OUTPUTS', punch_dir = 'PUNCHS'):
         
         self.__full__ = __full__
         self.__clear__ = __full__
@@ -20,8 +21,8 @@ class Wrapper(object):
         self.output_file_path = os.path.join(self.output_dir, jobname + '.out')
         
         self.out_dir_check()
-        
-        if not __full__:
+
+        if __full__:
             cmd = 'firefly -i {0} 2>&1 | tee {1}'.format(self.input_file_path, self.output_file_path)
             print('cmd: {0}'.format(cmd))
         else:
@@ -32,8 +33,18 @@ class Wrapper(object):
             cmd = 'firefly -i {0} -o {1}'.format(self.input_file_path, self.output_file_path)
             print('cmd: {0}'.format(cmd))
 
-        os.system( cmd )
-       
+        proc = subprocess.Popen(cmd, shell = True, stdout = subprocess.PIPE)
+
+        while proc.poll() is None:
+            line = proc.stdout.readline()
+            if 'FINAL ENERGY' in line:
+                print('Final energy: {0}'.format(line.split()[3]))
+
+        # if process ended before python fully read the data
+        # the remainded is communicated here
+        # output = proc.communicate()[0]
+        # it's not needed because the whole output file could be analyzed after the end of the process
+
         self.read_output()
 
         self.check_execution()
@@ -44,16 +55,17 @@ class Wrapper(object):
         
         user_input = raw_input()
         if user_input == '1':
-            total_energy = self.find_total_energy()
+            total_energy = self.find_energy(self.output, total = True)
             print('Found total energy: {0}'.format(total_energy))
-        
-    def find_total_energy(self):
-        for line in self.output:
-            if 'TOTAL ENERGY' in line:
-                energy = line.split()[-1]
-                
-                if self.is_float(energy):
-                    return energy
+       
+    def find_energy(self, lines, total = False, final = False):
+        for line in lines:
+            if total:
+                if 'TOTAL ENERGY' in line:
+                    energy = line.split()[-1]
+            
+                    if self.is_float(energy):
+                        return energy
 
     @staticmethod
     def is_float(s):
@@ -121,4 +133,4 @@ class Wrapper(object):
 
         os.rename('PUNCH', os.path.join(self.punch_dir, self.jobname + '.punch'))
 
-wrapper = Wrapper(jobname = 'test')
+wrapper = Wrapper(jobname = 'test', __full__ = True)

@@ -1,0 +1,2633 @@
+                     Running on host artfin-MacBookPro
+
+          ******************************************************
+          *      Firefly version 8.2.0, build number 10203     *
+          *   Compiled on    Monday,    19-09-2016, 15:30:23   *
+          *Code development and Intel/AMD specific optimization*
+          *  Copyright (c) 1994, 2016 by  Alex A. Granovsky,   *
+          *          Firefly Project, Moscow, Russia.          *
+          *   Some parts of this program include code due to   *
+          * work of Jim Kress, Peter Burger, and Robert Ponec. *
+          ******************************************************
+          *             Firefly Project homepage:              *
+          * http://classic.chem.msu.su/gran/firefly/index.html *
+          *                      e-mail:                       *
+          *               gran@classic.chem.msu.su             *
+          *This program is not a free software and is provided *
+          *exclusively to its registered users under the terms *
+          *       of Firefly package license agreement         *
+          * Unauthorized use of Firefly is strongly prohibited *
+          *   This program may not be redistributed without    *
+          * the specific, written permission of its developers.*
+          ******************************************************
+
+          ******************************************************
+          *  PARTIALLY BASED ON  US GAMESS VERSION 6 JUN 1999, *
+          *   US GAMESS VERSIONS  6 SEP 2001 AND 12 DEC 2003   *
+          *             FROM IOWA STATE UNIVERSITY             *
+          * M.W.SCHMIDT, K.K.BALDRIDGE, J.A.BOATZ, S.T.ELBERT, *
+          *   M.S.GORDON, J.H.JENSEN, S.KOSEKI, N.MATSUNAGA,   *
+          *          K.A.NGUYEN, S.J.SU, T.L.WINDUS,           *
+          *       TOGETHER WITH M.DUPUIS, J.A.MONTGOMERY       *
+          *         J.COMPUT.CHEM.  14, 1347-1363(1993)        *
+          ******************************************************
+
+
+ Core i7    / Linux  Firefly version running under Linux.
+ Running on Intel CPU:  Brand ID  0, Family  6, Model  42, Stepping  7
+ CPU Brand String    :  Intel(R) Core(TM) i5-2415M CPU @ 2.30GHz        
+ CPU Features        :  x87 FPU, CMOV, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, AVX, HTT, MWAIT, EM64T
+ Data cache size     :  L1 32 KB, L2  256 KB, L3  3072 KB
+ max    # of   cores/package :   8
+ max    # of threads/package :  16
+ max     cache sharing level :  16
+ actual # of   cores/package :   2
+ actual # of threads/package :   4
+ actual # of threads/core    :   2
+ Operating System successfully passed SSE support test.
+ Operating System supports AVX/FMA.
+
+
+ PARALLEL VERSION (MPICH) RUNNING IN SERIAL MODE USING SINGLE PROCESS
+
+ EXECUTION OF FIREFLY BEGUN 16:44:17 22-APR-2017    
+
+            ECHO OF THE FIRST FEW INPUT CARDS -
+ INPUT CARD> $CONTRL SCFTYP=rhf DFTTYP=B3LYP runtyp=irc UNITS=ANGS $END                     
+ INPUT CARD> $SYSTEM TIMLIM=5000 MEMORY=2000000 $END                                        
+ INPUT CARD> $BASIS  GBASIS=N31 NGAUSS=6 ndfunc=1 npfunc=1 $END                             
+ INPUT CARD> $IRC PACE=GS2 MXOPT=100 SADDLE=.true. FORWRD=.FALSE. NPOINT=50 $END      ! FORW
+ INPUT CARD> $DATA                                                                          
+ INPUT CARD>  TS CH3-CH2-CH2F  IRC backward                                                 
+ INPUT CARD> C1                                                                             
+ INPUT CARD>C 6       -0.711221872      0.277839899      0.348288902                        
+ INPUT CARD>C 6       -0.758325941      1.615221820     -0.086741977                        
+ INPUT CARD>C 6        0.428228946     -0.643644949     -0.045866043                        
+ INPUT CARD>H 1       -1.672424776     -0.193165747      0.551359187                        
+ INPUT CARD>H 1       -1.688990474      2.170931464     -0.112633563                        
+ INPUT CARD>H 1        0.073633885      2.066583471     -0.618599515                        
+ INPUT CARD>H 1        0.236586931     -1.149783515     -1.000092039                        
+ INPUT CARD>H 1        1.367119099     -0.088854548     -0.145499081                        
+ INPUT CARD>H 1        0.586357670     -1.421243036      0.707634531                        
+ INPUT CARD>H 1       -0.398328604      1.047067623      1.408112918                        
+ INPUT CARD>F 9       -0.238116082      2.290424498      1.608324271                        
+ INPUT CARD>$END                                                                            
+ INPUT CARD> $HESS                                                                    ! Past
+ INPUT CARD>ENERGY IS     -218.2816488523 E(NUC) IS      126.8160560033                     
+ INPUT CARD> 1  1 5.45934263E-01 3.70238718E-02-1.11316842E-01-1.08120239E-01-4.40268420E-03
+ INPUT CARD> 1  2 1.96907881E-02-1.61991240E-01 5.67778593E-02 3.23512988E-02-2.61547859E-01
+ INPUT CARD> 1  3-9.82812861E-02 6.10534852E-02 4.62844228E-03 2.48869178E-02-6.29640931E-03
+ INPUT CARD> 1  4 3.00102535E-03-2.56949501E-02 6.25034758E-03 3.77811231E-03 1.67506146E-04
+ INPUT CARD> 1  5 2.36894799E-03-2.19297699E-02 1.82270184E-02 6.00278644E-03-3.32003422E-03
+ INPUT CARD> 1  6 2.93763375E-03 1.14931932E-03-1.09327521E-02 1.34504125E-02-4.40303728E-03
+ INPUT CARD> 1  7 1.05018334E-02-2.50916221E-02-6.85076522E-03                              
+ INPUT CARD> 2  1 3.70238718E-02 7.60802701E-01-5.64658702E-02 9.63865672E-03-4.27254197E-01
+ INPUT CARD> 2  2 1.13770582E-01 5.74805663E-02-1.31656437E-01-1.64610668E-02-1.04013618E-01
+ INPUT CARD> 2  3-1.05810602E-01 2.69266632E-02-3.00302409E-03-1.23642652E-02 4.39007021E-03
+ INPUT CARD> 2  4 4.83258782E-04-9.68832942E-03 2.58876431E-03 2.03463196E-02-1.61799429E-02
+ INPUT CARD> 2  5-4.01722129E-03-1.30132715E-02 1.15742009E-02 3.50997543E-03 1.77287333E-02
+ INPUT CARD> 2  6-1.48084529E-02-6.32105632E-03-1.15831723E-02-3.61401287E-02-3.28762717E-02
+ INPUT CARD> 2  7-1.10830895E-02-1.84770927E-02-3.50414131E-02                              
+ INPUT CARD> 3  1-1.11316842E-01-5.64658702E-02 1.76454918E-01 1.04210437E-02 4.71321065E-02
+ INPUT CARD> 3  2-8.82361606E-02 2.70668941E-02-7.55147955E-03-6.36661533E-02 6.70827710E-02
+ INPUT CARD> 3  3 2.93119507E-02-4.07576813E-02 1.37000769E-03-5.15367845E-03 5.96084260E-03
+ INPUT CARD> 3  4-1.24302122E-05 1.01430573E-02 4.70012976E-03 1.89078104E-02-1.34732257E-02
+ INPUT CARD> 3  5 2.54900950E-04 4.84631740E-03-4.47920214E-03-3.07063956E-03-1.77344996E-02
+ INPUT CARD> 3  6 1.16628282E-02 9.49312485E-03 5.55407250E-03 7.50642895E-02-1.80900242E-02
+ INPUT CARD> 3  7-6.18456583E-03-8.61891778E-02 1.69598599E-02                              
+ INPUT CARD> 4  1-1.08120239E-01 9.63865672E-03 1.04210437E-02 6.18568756E-01-6.08468854E-02
+ INPUT CARD> 4  2-1.30620429E-01 2.16918419E-03 2.66860952E-02-1.06209337E-02 3.83015369E-03
+ INPUT CARD> 4  3-2.81768071E-02 1.22197925E-02-2.66377450E-01 1.32881492E-01 2.27903312E-02
+ INPUT CARD> 4  4-2.42408974E-01-9.55517641E-02 9.92396289E-02-2.14440543E-03 1.49705163E-03
+ INPUT CARD> 4  5 4.99843677E-04 8.04266706E-04 1.02238892E-03-5.42105128E-04-4.54219153E-03
+ INPUT CARD> 4  6 4.54684566E-03 1.02968697E-03 6.03808337E-03 2.99045894E-02-1.00138237E-04
+ INPUT CARD> 4  7-7.81786391E-03-2.16019217E-02-4.31663340E-03                              
+ INPUT CARD> 5  1-4.40268420E-03-4.27254197E-01 4.71321065E-02-6.08468854E-02 6.70294797E-01
+    2000000 WORDS OF MEMORY AVAILABLE
+
+ This job is executing on     1 unique host(s)
+ Minimum number of processes per host is:    1
+ Maximum number of processes per host is:    1
+
+ On master's host, detected    4 CPU core(s) in aggregate
+
+ Warning: running without fastdiag runtime extension!
+
+ Warning: HTT is enabled, bitmask of physically unique cores is 0x0000000C
+
+ SMT aware parts of program will use              2 threads.
+
+ Creating thread pool to serve up to            128 threads.
+
+ Activating Call64 option.
+
+ Using 64-bit DGEMM by default.
+
+     BASIS OPTIONS
+     -------------
+     GBASIS=N31          IGAUSS=       6      POLAR=POPLE   
+     NDFUNC=       1     NFFUNC=       0     DIFFSP=       F
+     NPFUNC=       1      DIFFS=       F
+
+
+     RUN TITLE
+     ---------
+   TS CH3-CH2-CH2F  IRC backward                                                 
+
+ THE POINT GROUP OF THE MOLECULE IS C1      
+ THE ORDER OF THE PRINCIPAL AXIS IS     0
+
+ ATOM      ATOMIC                      COORDINATES (BOHR)
+           CHARGE         X                   Y                   Z
+ C           6.0    -1.3440145525        0.5250413158        0.6581706373
+ C           6.0    -1.4330283423        3.0523268717       -0.1639185801
+ C           6.0     0.8092354269       -1.2163126756       -0.0866742597
+ H           1.0    -3.1604247921       -0.3650303586        1.0419178602
+ H           1.0    -3.1917294244        4.1024659041       -0.2128465866
+ H           1.0     0.1391478762        3.9052767756       -1.1689836647
+ H           1.0     0.4470845045       -2.1727759469       -1.8899000540
+ H           1.0     2.5834806780       -0.1679107607       -0.2749534146
+ H           1.0     1.1080554079       -2.6857600958        1.3372354605
+ H           1.0    -0.7527319695        1.9786710423        2.6609477687
+ F           9.0    -0.4499741810        4.3282750123        3.0392923931
+
+          INTERNUCLEAR DISTANCES (ANGS.)
+          ------------------------------
+
+                    C              C              C              H         
+
+  1  C               0.0000000      1.4071464 *    1.5175113 *    1.0894929 *  
+  2  C               1.4071464 *    0.0000000      2.5518743 *    2.1243859 *  
+  3  C               1.5175113 *    2.5518743 *    0.0000000      2.2298779 *  
+  4  H               1.0894929 *    2.1243859 *    2.2298779 *    0.0000000    
+  5  H               2.1799717 *    1.0842601 *    3.5226292      2.4556295 *  
+  6  H               2.1795585 *    1.0857057 *    2.7926868 *    3.0860964    
+  7  H               2.1805002 *    3.0772251      1.0970188 *    2.6394022 *  
+  8  H               2.1674392 *    2.7248569 *    1.0950954 *    3.1201473    
+  9  H               2.1678849 *    3.4145757      1.0942699 *    2.5757900 *  
+ 10  H               1.3464176 *    1.6392036 *    2.3781844 *    1.9737089 *  
+ 11  F               2.4211598 *    1.8973051 *    3.4335295      3.0565728    
+
+                    H              H              H              H         
+
+  1  C               2.1799717 *    2.1795585 *    2.1805002 *    2.1674392 *  
+  2  C               1.0842601 *    1.0857057 *    3.0772251      2.7248569 *  
+  3  C               3.5226292      2.7926868 *    1.0970188 *    1.0950954 *  
+  4  H               2.4556295 *    3.0860964      2.6394022 *    3.1201473    
+  5  H               0.0000000      1.8367729 *    3.9398704      3.8009892    
+  6  H               1.8367729 *    0.0000000      3.2430089      2.5578978 *  
+  7  H               3.9398704      3.2430089      0.0000000      1.7703114 *  
+  8  H               3.8009892      2.5578978 *    1.7703114 *    0.0000000    
+  9  H               4.3305619      3.7665257      1.7641882 *    1.7642802 *  
+ 10  H               2.2894427 *    2.3172666 *    3.3209522      2.6116728 *  
+ 11  F               2.2541098 *    2.2597527 *    4.3432948      3.3635762    
+
+                    H              H              F         
+
+  1  C               2.1678849 *    1.3464176 *    2.4211598 *  
+  2  C               3.4145757      1.6392036 *    1.8973051 *  
+  3  C               1.0942699 *    2.3781844 *    3.4335295    
+  4  H               2.5757900 *    1.9737089 *    3.0565728    
+  5  H               4.3305619      2.2894427 *    2.2541098 *  
+  6  H               3.7665257      2.3172666 *    2.2597527 *  
+  7  H               1.7641882 *    3.3209522      4.3432948    
+  8  H               1.7642802 *    2.6116728 *    3.3635762    
+  9  H               0.0000000      2.7482421 *    3.9073616    
+ 10  H               2.7482421 *    0.0000000      1.2695231 *  
+ 11  F               3.9073616      1.2695231 *    0.0000000    
+
+  * ... LESS THAN  3.000
+
+
+     ATOMIC BASIS SET
+     ----------------
+ THE CONTRACTED PRIMITIVE FUNCTIONS HAVE BEEN UNNORMALIZED
+ THE CONTRACTED BASIS FUNCTIONS ARE NOW NORMALIZED TO UNITY
+
+ SHELL TYPE PRIM    EXPONENT          CONTRACTION COEFFICIENTS
+
+ C         
+
+   1   S    1    3047.524880    0.536345 (  0.001835) 
+   1   S    2     457.369518    0.989452 (  0.014037) 
+   1   S    3     103.948685    1.597283 (  0.068843) 
+   1   S    4      29.210155    2.079187 (  0.232184) 
+   1   S    5       9.286663    1.774174 (  0.467941) 
+   1   S    6       3.163927    0.612580 (  0.362312) 
+
+   2   L    7       7.868272   -0.399556 ( -0.119332)     1.296082 (  0.068999) 
+   2   L    8       1.881289   -0.184155 ( -0.160854)     0.993754 (  0.316424) 
+   2   L    9       0.544249    0.516390 (  1.143456)     0.495953 (  0.744308) 
+
+   3   L   10       0.168714    0.187618 (  1.000000)     0.154128 (  1.000000) 
+
+   4   D   11       0.800000    1.113825 (  1.000000) 
+
+ C         
+
+   5   S   12    3047.524880    0.536345 (  0.001835) 
+   5   S   13     457.369518    0.989452 (  0.014037) 
+   5   S   14     103.948685    1.597283 (  0.068843) 
+   5   S   15      29.210155    2.079187 (  0.232184) 
+   5   S   16       9.286663    1.774174 (  0.467941) 
+   5   S   17       3.163927    0.612580 (  0.362312) 
+
+   6   L   18       7.868272   -0.399556 ( -0.119332)     1.296082 (  0.068999) 
+   6   L   19       1.881289   -0.184155 ( -0.160854)     0.993754 (  0.316424) 
+   6   L   20       0.544249    0.516390 (  1.143456)     0.495953 (  0.744308) 
+
+   7   L   21       0.168714    0.187618 (  1.000000)     0.154128 (  1.000000) 
+
+   8   D   22       0.800000    1.113825 (  1.000000) 
+
+ C         
+
+   9   S   23    3047.524880    0.536345 (  0.001835) 
+   9   S   24     457.369518    0.989452 (  0.014037) 
+   9   S   25     103.948685    1.597283 (  0.068843) 
+   9   S   26      29.210155    2.079187 (  0.232184) 
+   9   S   27       9.286663    1.774174 (  0.467941) 
+   9   S   28       3.163927    0.612580 (  0.362312) 
+
+  10   L   29       7.868272   -0.399556 ( -0.119332)     1.296082 (  0.068999) 
+  10   L   30       1.881289   -0.184155 ( -0.160854)     0.993754 (  0.316424) 
+  10   L   31       0.544249    0.516390 (  1.143456)     0.495953 (  0.744308) 
+
+  11   L   32       0.168714    0.187618 (  1.000000)     0.154128 (  1.000000) 
+
+  12   D   33       0.800000    1.113825 (  1.000000) 
+
+ H         
+
+  13   S   34      18.731137    0.214935 (  0.033495) 
+  13   S   35       2.825394    0.364571 (  0.234727) 
+  13   S   36       0.640122    0.415051 (  0.813757) 
+
+  14   S   37       0.161278    0.181381 (  1.000000) 
+
+  15   P   38       1.100000    1.605761 (  1.000000) 
+
+ H         
+
+  16   S   39      18.731137    0.214935 (  0.033495) 
+  16   S   40       2.825394    0.364571 (  0.234727) 
+  16   S   41       0.640122    0.415051 (  0.813757) 
+
+  17   S   42       0.161278    0.181381 (  1.000000) 
+
+  18   P   43       1.100000    1.605761 (  1.000000) 
+
+ H         
+
+  19   S   44      18.731137    0.214935 (  0.033495) 
+  19   S   45       2.825394    0.364571 (  0.234727) 
+  19   S   46       0.640122    0.415051 (  0.813757) 
+
+  20   S   47       0.161278    0.181381 (  1.000000) 
+
+  21   P   48       1.100000    1.605761 (  1.000000) 
+
+ H         
+
+  22   S   49      18.731137    0.214935 (  0.033495) 
+  22   S   50       2.825394    0.364571 (  0.234727) 
+  22   S   51       0.640122    0.415051 (  0.813757) 
+
+  23   S   52       0.161278    0.181381 (  1.000000) 
+
+  24   P   53       1.100000    1.605761 (  1.000000) 
+
+ H         
+
+  25   S   54      18.731137    0.214935 (  0.033495) 
+  25   S   55       2.825394    0.364571 (  0.234727) 
+  25   S   56       0.640122    0.415051 (  0.813757) 
+
+  26   S   57       0.161278    0.181381 (  1.000000) 
+
+  27   P   58       1.100000    1.605761 (  1.000000) 
+
+ H         
+
+  28   S   59      18.731137    0.214935 (  0.033495) 
+  28   S   60       2.825394    0.364571 (  0.234727) 
+  28   S   61       0.640122    0.415051 (  0.813757) 
+
+  29   S   62       0.161278    0.181381 (  1.000000) 
+
+  30   P   63       1.100000    1.605761 (  1.000000) 
+
+ H         
+
+  31   S   64      18.731137    0.214935 (  0.033495) 
+  31   S   65       2.825394    0.364571 (  0.234727) 
+  31   S   66       0.640122    0.415051 (  0.813757) 
+
+  32   S   67       0.161278    0.181381 (  1.000000) 
+
+  33   P   68       1.100000    1.605761 (  1.000000) 
+
+ F         
+
+  34   S   69    7001.713090    0.992643 (  0.001820) 
+  34   S   70    1051.366090    1.831228 (  0.013916) 
+  34   S   71     239.285690    2.966112 (  0.068405) 
+  34   S   72      67.397445    3.909261 (  0.233186) 
+  34   S   73      21.519957    3.355897 (  0.471267) 
+  34   S   74       7.403101    1.140707 (  0.356619) 
+
+  35   L   75      20.847953   -0.754511 ( -0.108507)     4.548378 (  0.071629) 
+  35   L   76       4.808308   -0.338921 ( -0.146452)     3.510720 (  0.345912) 
+  35   L   77       1.344070    1.004155 (  1.128689)     1.490346 (  0.722470) 
+
+  36   L   78       0.358151    0.329959 (  1.000000)     0.394933 (  1.000000) 
+
+  37   D   79       0.800000    1.113825 (  1.000000) 
+
+ TOTAL NUMBER OF SHELLS              =   37
+ TOTAL NUMBER OF BASIS FUNCTIONS     =   95
+ NUMBER OF ELECTRONS                 =   34
+ CHARGE OF MOLECULE                  =    0
+ STATE MULTIPLICITY                  =    1
+ NUMBER OF OCCUPIED ORBITALS (ALPHA) =   17
+ NUMBER OF OCCUPIED ORBITALS (BETA ) =   17
+ TOTAL NUMBER OF ATOMS               =   11
+ THE NUCLEAR REPULSION ENERGY IS      124.8172913821
+
+     $CONTRL OPTIONS
+     ---------------
+     SCFTYP=RHF          RUNTYP=IRC          EXETYP=RUN     
+     MPLEVL=       0     LOCAL =NONE         UNITS =ANGS    
+     MULT  =       1     ICHARG=       0     MAXIT =      30
+     NPRINT=       7     IREST =       0     COORD =UNIQUE  
+     ECP   =NONE         NORMF =       0     NORMP =       0
+     ITOL  =      20     ICUT  =       9     NZVAR =       0
+     NOSYM =       0     INTTYP=POPLE        GEOM  =INPUT   
+     PLTORB=       F     MOLPLT=       F     RPAC  =       F
+     AIMPAC=       0     FRIEND=             CITYP =NONE    
+     DFTTYP=B3LYP   
+
+     $SYSTEM OPTIONS
+     ---------------
+     KDIAG =       0     MEMORY=  2000000     TIMLIM=   300000.0 SEC.
+     COREFL=       F     PTIME =        F     XDR   =       F
+     BALTYP=LOOP         CBASE = 09001000     FBASE = 00000000
+
+          ----------------
+          PROPERTIES INPUT
+          ----------------
+
+     MOMENTS            FIELD           POTENTIAL          DENSITY
+ IEMOM =       1   IEFLD =       0   IEPOT =       0   IEDEN =       0
+ WHERE =COMASS     WHERE =NUCLEI     WHERE =NUCLEI     WHERE =NUCLEI  
+ OUTPUT=BOTH       OUTPUT=BOTH       OUTPUT=BOTH       OUTPUT=BOTH    
+ IEMINT=       0   IEFINT=       0                     IEDINT=       0
+                                                       MORB  =       0
+
+
+          ----------------   ------------------------------------
+          DFT CODE OPTIONS   PROGRAM WRITTEN BY ALEX A. GRANOVSKY
+          ----------------   ------------------------------------
+          NRAD   =   63      LMAX   =  29 ( 302 POINTS PER SHELL)
+          ANGPRN =    T      RADPRN =   T
+          KAP    =   5.000   LMIN   =   7 (  26 POINTS PER SHELL)
+          CUTOFF = 1.0E-10   CUTAO  = 1.0E-10
+          CUTWGT = 1.0E-20   CUTORB = 1.0E-15
+          CUTGG1 = 1.0E-13   CUTGG2 = 1.0E-13
+          CUTGG3 = 1.0E-13   CUTGG4 = 1.0E-30
+          B3LYP  =  NWCHEM   O3LYP  = DEFAULT 
+          HFX    =  2.0000000000000000000E-01
+          CPT2   =  0.0000000000000000000E+00
+          SCS(S) =  1.0000000000000000000E+00
+          SCS(T) =  1.0000000000000000000E+00
+
+
+
+          EXTRAPOLATION IN EFFECT
+          DAMPING IN EFFECT
+          LEVEL SHIFTING IN EFFECT
+          DIIS IN EFFECT
+
+          ----------------------
+          INTEGRAL INPUT OPTIONS
+          ----------------------
+ NOPK  =       1 NORDER=       0 SCHWRZ=       T
+
+ ATTENTION! AO INTEGRALS WILL BE PACKED.
+ THRESHOLD FOR PACKING PKTHR =  0.10000000D-01
+
+     -------------------------------
+     INTEGRAL TRANSFORMATION OPTIONS
+     -------------------------------
+     NWORD  =       0     CUTTRF = 1.0E-09
+     MPTRAN =       0     DIRTRF =       F
+     AOINTS =DUP          IREST  =       0
+
+     ------------------------------------------
+     THE POINT GROUP IS C1 , NAXIS= 0, ORDER= 1
+     ------------------------------------------
+
+     DIMENSIONS OF THE SYMMETRY SUBSPACES ARE
+ A   =  95
+
+ ..... DONE SETTING UP THE RUN .....
+
+ CPU        TIME:   STEP =      0.06 ,  TOTAL =        0.1 SECONDS (    0.0 MIN)
+ WALL CLOCK TIME:   STEP =      0.06 ,  TOTAL =        0.1 SECONDS (    0.0 MIN)
+ CPU UTILIZATION:   STEP =    105.45%,  TOTAL =     175.75%
+
+          -----------------------------
+          INTRINSIC REACTION COORDINATE
+          -----------------------------
+          PACE   =GS2     
+          STRIDE = 0.30000 BOHR*SQRT(AMU)
+          NPOINT =      50
+          NEXTPT =       0
+          STOTAL =  0.0000 BOHR*SQRT(AMU)
+          SAB    =  0.0000 BOHR*SQRT(AMU)
+          NPRT   =       0
+          NPUN   =       0
+
+          SADDLE =       T
+          TSENGY =       F
+          FORWRD =       F
+          EVIB   = 0.00050 HARTREE
+          FREQ   =     0.0 CM**-1
+
+          STABLZ =       F
+          ELBOW  =  175.00 DEGREES
+          DELTA  = 0.02500 BOHR
+
+          READQB =       F
+          EB     =        0.0000000000 HARTREES
+          GBNORM =        0.0000000000 HARTREES/SQRT(AMU)-BOHR
+
+          GCUT   = 0.0001000 HARTREES/SQRT(AMU)-BOHR
+          RCUT   = 0.0010000 BOHR
+          ACUT   =    5.00 DEGREES
+          MXOPT  =     100
+          IHUPD  =       2
+
+ ATOMIC MASSES USED (IN AMU) ARE
+     C             12.0000
+     C             12.0000
+     C             12.0000
+     H              1.0078
+     H              1.0078
+     H              1.0078
+     H              1.0078
+     H              1.0078
+     H              1.0078
+     H              1.0078
+     F             18.9984
+
+ JUMP AWAY FROM SADDLE POINT WILL BE FOUND FROM THE INPUT HESSIAN MATRIX
+
+
+ JUMPING OFF SADDLE POINT ALONG THE IMAGINARY NORMAL MODE...
+
+ $HESS GROUP READ FROM CARDS
+ ENERGY IS     -218.2816488523 E(NUC) IS      126.8160560033                     
+ INITIAL DISPLACEMENT= -0.15 ALONG MODE WITH FREQUENCY=     952.800 I CM**-1
+ THE COMPONENTS OF THE DISPLACEMENT ARE (BOHR) -
+    0.002146  -0.001315   0.011748       0.006102   0.013087   0.017094       0.000164  -0.000916  -0.001887
+   -0.006225  -0.001733  -0.020104      -0.000392   0.004405  -0.004330       0.000447   0.005683  -0.001100
+    0.001336   0.001971  -0.003879       0.000292   0.000300   0.001655       0.000500  -0.001768  -0.003001
+   -0.021338  -0.091816  -0.036414      -0.003967  -0.002455  -0.013463
+
+ $HESS GROUP READ FROM CARDS
+ ENERGY IS     -218.2816488523 E(NUC) IS      126.8160560033                     
+
+ *********************************************
+ ***** STARTING CONSTRAINED OPTIMIZATION *****
+ *** TO FIND THE NEXT REACTION PATH POINT ****
+ *********************************************
+ CONSTRAINED OPTIMIZATION POINT   1 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7089504248   0.2764477073   0.3607219473
+ C           6.0  -0.7518680612   1.6290719964  -0.0686504040
+ C           6.0   0.4284022886  -0.6446145572  -0.0478628923
+ H           1.0  -1.6790129862  -0.1949996229   0.5300822217
+ H           1.0  -1.6894054010   2.1755933702  -0.1172164757
+ H           1.0   0.0741070355   2.0725977587  -0.6197636359
+ H           1.0   0.2380012223  -1.1476970623  -1.0041974562
+ H           1.0   1.3674282648  -0.0885370574  -0.1437470692
+ H           1.0   0.5868872804  -1.4231147311   0.7044580599
+ H           1.0  -0.4209115446   0.9498939752   1.3695742433
+ F           9.0  -0.2423149178   2.2878259289   1.5940760754
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.04 ,  TOTAL =        0.1 SECONDS (    0.0 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =        0.1 SECONDS (    0.0 MIN)
+ CPU UTILIZATION:   STEP =    187.78%,  TOTAL =     179.03%
+
+          -------------
+          GUESS OPTIONS
+          -------------
+          GUESS =HUCKEL            NORB  =       0          NORDER=       0
+          MIX   =       F          PRTMO =       F          SYMDEN=       F
+          TOLZ  = 0.0E+00          TOLE  = 0.0E+00
+
+ INITIAL GUESS ORBITALS GENERATED BY HUCKEL   ROUTINE.
+ HUCKEL GUESS REQUIRES     66603 WORDS.
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27647935E+00
+
+ SYMMETRIES FOR INITIAL GUESS ORBITALS FOLLOW.   BOTH SET(S).
+    17 ORBITALS ARE OCCUPIED (    4 CORE ORBITALS).
+     5=A        6=A        7=A        8=A        9=A       10=A       11=A   
+    12=A       13=A       14=A       15=A       16=A       17=A       18=A   
+    19=A       20=A       21=A       22=A       23=A       24=A       25=A   
+    26=A       27=A   
+ ...... END OF INITIAL ORBITAL SELECTION ......
+
+ CPU        TIME:   STEP =      0.00 ,  TOTAL =        0.1 SECONDS (    0.0 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =        0.1 SECONDS (    0.0 MIN)
+ CPU UTILIZATION:   STEP =      0.00%,  TOTAL =     148.91%
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8440384
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.10 ,  TOTAL =        1.2 SECONDS (    0.0 MIN)
+ WALL CLOCK TIME:   STEP =      1.10 ,  TOTAL =        1.2 SECONDS (    0.0 MIN)
+ CPU UTILIZATION:   STEP =     99.91%,  TOTAL =     103.76%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -217.771796452  -217.771796452   0.601317352   0.578664876
+   2  1  0  -217.112355674     0.659440778   0.477100567   0.474911068
+   3  2  0  -218.267044821    -1.154689147   0.076486103   0.039240517
+   4  3  0  -218.268754847    -0.001710026   0.041118105   0.031549376
+   5  4  0  -218.281733792    -0.012978945   0.008535763   0.006481686
+   6  5  0  -218.281969345    -0.000235553   0.001971882   0.001077170
+   7  6  0  -218.281983308    -0.000013963   0.000521337   0.000509239
+   8  7  0  -218.281985197    -0.000001889   0.000142207   0.000113189
+   9  8  0  -218.281985366    -0.000000169   0.000041547   0.000018177
+  10  9  0  -218.281985370    -0.000000004   0.000023324   0.000013307
+  11 10  0  -218.281985372    -0.000000002   0.000006574   0.000003768
+  12 11  0  -218.281985372     0.000000000   0.000001510   0.000000515
+  13 12  0  -218.281985372     0.000000000   0.000000193   0.000000161
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       8.22 SECONDS (       0.63 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       6.72 SECONDS (       0.52 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.02 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2819853719 AFTER  13 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7226103284
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000219354
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      8.24 ,  TOTAL =        9.5 SECONDS (    0.2 MIN)
+ WALL CLOCK TIME:   STEP =      8.25 ,  TOTAL =        9.4 SECONDS (    0.2 MIN)
+ CPU UTILIZATION:   STEP =     99.83%,  TOTAL =     100.32%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.02 ,  TOTAL =       10.5 SECONDS (    0.2 MIN)
+ WALL CLOCK TIME:   STEP =      0.99 ,  TOTAL =       10.4 SECONDS (    0.2 MIN)
+ CPU UTILIZATION:   STEP =    103.04%,  TOTAL =     100.58%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.62 ,  TOTAL =       12.1 SECONDS (    0.2 MIN)
+ WALL CLOCK TIME:   STEP =      1.62 ,  TOTAL =       12.1 SECONDS (    0.2 MIN)
+ CPU UTILIZATION:   STEP =     99.78%,  TOTAL =     100.47%
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2819854 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0165950 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =        25.126 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0467124 BOHR
+
+ CONSTRAINED OPTIMIZATION POINT   2 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092724172   0.2760521173   0.3587581568
+ C           6.0  -0.7532631517   1.6280013397  -0.0731217398
+ C           6.0   0.4283131781  -0.6443013758  -0.0474528679
+ H           1.0  -1.6761975766  -0.1950757316   0.5336819025
+ H           1.0  -1.6894918382   2.1731590027  -0.1184460644
+ H           1.0   0.0726443811   2.0697748546  -0.6223510024
+ H           1.0   0.2376329494  -1.1482155250  -1.0024156492
+ H           1.0   1.3670321999  -0.0886850452  -0.1441479496
+ H           1.0   0.5859348036  -1.4219936904   0.7056386282
+ H           1.0  -0.4187822997   0.9296477975   1.3796361387
+ F           9.0  -0.2412631221   2.2898870685   1.5972236052
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.00 ,  TOTAL =       12.1 SECONDS (    0.2 MIN)
+ WALL CLOCK TIME:   STEP =      0.01 ,  TOTAL =       12.1 SECONDS (    0.2 MIN)
+ CPU UTILIZATION:   STEP =      0.00%,  TOTAL =     100.40%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27329592E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439910
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.04 ,  TOTAL =       13.2 SECONDS (    0.2 MIN)
+ WALL CLOCK TIME:   STEP =      1.04 ,  TOTAL =       13.1 SECONDS (    0.2 MIN)
+ CPU UTILIZATION:   STEP =    100.03%,  TOTAL =     100.37%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282497560  -218.282497560   0.005470366   0.003246283
+   2  1  0  -218.282585006    -0.000087446   0.001466537   0.001253996
+   3  2  0  -218.282593831    -0.000008825   0.001250493   0.000555202
+   4  3  0  -218.282594889    -0.000001058   0.000388965   0.000380165
+   5  4  0  -218.282595689    -0.000000800   0.000107437   0.000081729
+   6  5  0  -218.282595756    -0.000000066   0.000039630   0.000014732
+   7  6  0  -218.282595757    -0.000000002   0.000006490   0.000003996
+   8  7  0  -218.282595758     0.000000000   0.000001548   0.000001248
+   9  8  0  -218.282595758     0.000000000   0.000000382   0.000000268
+  10  9  0  -218.282595758     0.000000000   0.000000075   0.000000053
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       6.90 SECONDS (       0.69 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       5.70 SECONDS (       0.57 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.08 SECONDS (       0.01 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2825957576 AFTER  10 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220221795
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259463
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      6.98 ,  TOTAL =       20.1 SECONDS (    0.3 MIN)
+ WALL CLOCK TIME:   STEP =      7.00 ,  TOTAL =       20.1 SECONDS (    0.3 MIN)
+ CPU UTILIZATION:   STEP =     99.75%,  TOTAL =     100.15%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.34 ,  TOTAL =       21.5 SECONDS (    0.4 MIN)
+ WALL CLOCK TIME:   STEP =      1.34 ,  TOTAL =       21.4 SECONDS (    0.4 MIN)
+ CPU UTILIZATION:   STEP =    100.37%,  TOTAL =     100.17%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.84 ,  TOTAL =       23.3 SECONDS (    0.4 MIN)
+ WALL CLOCK TIME:   STEP =      1.83 ,  TOTAL =       23.3 SECONDS (    0.4 MIN)
+ CPU UTILIZATION:   STEP =    100.52%,  TOTAL =     100.20%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS  25.126
+ LINEAR INTERPOLATION GIVES ANGLE         27.771
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2825958 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0024379 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         2.833 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0059319 BOHR
+
+ CONSTRAINED OPTIMIZATION POINT   3 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092925569   0.2760537689   0.3585133850
+ C           6.0  -0.7535236906   1.6274388599  -0.0738627258
+ C           6.0   0.4282994327  -0.6443057640  -0.0474279120
+ H           1.0  -1.6763686944  -0.1953024171   0.5337766539
+ H           1.0  -1.6896119749   2.1728491287  -0.1185874577
+ H           1.0   0.0725990638   2.0694073013  -0.6223391809
+ H           1.0   0.2375917578  -1.1481825951  -1.0025726846
+ H           1.0   1.3670061244  -0.0885891113  -0.1440990541
+ H           1.0   0.5859064050  -1.4220890866   0.7056955304
+ H           1.0  -0.4192697230   0.9280211319   1.3780028682
+ F           9.0  -0.2410283656   2.2903765526   1.5979216879
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.00 ,  TOTAL =       23.3 SECONDS (    0.4 MIN)
+ WALL CLOCK TIME:   STEP =      0.01 ,  TOTAL =       23.3 SECONDS (    0.4 MIN)
+ CPU UTILIZATION:   STEP =      0.00%,  TOTAL =     100.16%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27375778E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439659
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.32 ,  TOTAL =       24.6 SECONDS (    0.4 MIN)
+ WALL CLOCK TIME:   STEP =      1.31 ,  TOTAL =       24.6 SECONDS (    0.4 MIN)
+ CPU UTILIZATION:   STEP =    100.74%,  TOTAL =     100.19%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282606802  -218.282606802   0.001155803   0.000647732
+   2  1  0  -218.282607847    -0.000001044   0.000445948   0.000363726
+   3  2  0  -218.282608848    -0.000001001   0.000107714   0.000047400
+   4  3  0  -218.282608858    -0.000000010   0.000053749   0.000042590
+   5  4  0  -218.282608877    -0.000000019   0.000017113   0.000009714
+   6  5  0  -218.282608878    -0.000000001   0.000003656   0.000002306
+   7  6  0  -218.282608878     0.000000000   0.000001279   0.000000636
+   8  7  0  -218.282608878     0.000000000   0.000000404   0.000000202
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       6.70 SECONDS (       0.84 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       5.52 SECONDS (       0.69 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.02 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826088783 AFTER   8 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7221688345
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259851
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      6.72 ,  TOTAL =       31.4 SECONDS (    0.5 MIN)
+ WALL CLOCK TIME:   STEP =      6.73 ,  TOTAL =       31.3 SECONDS (    0.5 MIN)
+ CPU UTILIZATION:   STEP =     99.78%,  TOTAL =     100.10%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.08 ,  TOTAL =       32.4 SECONDS (    0.5 MIN)
+ WALL CLOCK TIME:   STEP =      1.06 ,  TOTAL =       32.4 SECONDS (    0.5 MIN)
+ CPU UTILIZATION:   STEP =    101.65%,  TOTAL =     100.15%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.88 ,  TOTAL =       34.3 SECONDS (    0.6 MIN)
+ WALL CLOCK TIME:   STEP =      1.90 ,  TOTAL =       34.3 SECONDS (    0.6 MIN)
+ CPU UTILIZATION:   STEP =     98.84%,  TOTAL =     100.08%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   2.833
+ LINEAR INTERPOLATION GIVES ANGLE          2.918
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0002554 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.179 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0004263 BOHR
+
+ CONSTRAINED OPTIMIZATION POINT   4 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092953461   0.2760635728   0.3585001166
+ C           6.0  -0.7535256654   1.6274149024  -0.0738514187
+ C           6.0   0.4283023267  -0.6443155513  -0.0474333914
+ H           1.0  -1.6764615940  -0.1953590014   0.5337477455
+ H           1.0  -1.6896895914   2.1729285348  -0.1186076328
+ H           1.0   0.0726538627   2.0694672729  -0.6224293763
+ H           1.0   0.2376241530  -1.1482484097  -1.0025580234
+ H           1.0   1.3670132713  -0.0885793471  -0.1441089258
+ H           1.0   0.5859362429  -1.4220610137   0.7057164171
+ H           1.0  -0.4192981740   0.9280050034   1.3779754427
+ F           9.0  -0.2410232171   2.2903896222   1.5979338689
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =       34.3 SECONDS (    0.6 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =       34.3 SECONDS (    0.6 MIN)
+ CPU UTILIZATION:   STEP =    129.37%,  TOTAL =     100.09%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376142E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439551
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.84 ,  TOTAL =       36.2 SECONDS (    0.6 MIN)
+ WALL CLOCK TIME:   STEP =      2.74 ,  TOTAL =       37.0 SECONDS (    0.6 MIN)
+ CPU UTILIZATION:   STEP =     67.18%,  TOTAL =      97.66%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608920  -218.282608920   0.000057739   0.000020778
+   2  1  0  -218.282608927    -0.000000007   0.000014272   0.000008876
+   3  2  0  -218.282608928    -0.000000001   0.000005769   0.000002223
+   4  3  0  -218.282608928     0.000000000   0.000005404   0.000003233
+   5  4  0  -218.282608928     0.000000000   0.000001351   0.000001130
+   6  5  0  -218.282608928     0.000000000   0.000000362   0.000000157
+   7  6  0  -218.282608928     0.000000000   0.000000052   0.000000033
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =      11.46 SECONDS (       1.64 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       9.48 SECONDS (       1.35 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.02 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089278 AFTER   7 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220732484
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259803
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =     11.48 ,  TOTAL =       47.7 SECONDS (    0.8 MIN)
+ WALL CLOCK TIME:   STEP =     11.68 ,  TOTAL =       48.7 SECONDS (    0.8 MIN)
+ CPU UTILIZATION:   STEP =     98.27%,  TOTAL =      97.80%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.54 ,  TOTAL =       50.2 SECONDS (    0.8 MIN)
+ WALL CLOCK TIME:   STEP =      2.58 ,  TOTAL =       51.3 SECONDS (    0.9 MIN)
+ CPU UTILIZATION:   STEP =     98.54%,  TOTAL =      97.84%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      4.08 ,  TOTAL =       54.3 SECONDS (    0.9 MIN)
+ WALL CLOCK TIME:   STEP =      4.14 ,  TOTAL =       55.4 SECONDS (    0.9 MIN)
+ CPU UTILIZATION:   STEP =     98.66%,  TOTAL =      97.90%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.179
+ LINEAR INTERPOLATION GIVES ANGLE          0.169
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001315 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.017 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0000407 BOHR
+
+ CONSTRAINED OPTIMIZATION POINT   5 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092958732   0.2760628972   0.3584996801
+ C           6.0  -0.7535261544   1.6274150561  -0.0738541797
+ C           6.0   0.4283026156  -0.6443151583  -0.0474329160
+ H           1.0  -1.6764540252  -0.1953559800   0.5337579572
+ H           1.0  -1.6896840876   2.1729315743  -0.1185962217
+ H           1.0   0.0726552255   2.0694699330  -0.6224154617
+ H           1.0   0.2376227848  -1.1482490344  -1.0025610092
+ H           1.0   1.3670129138  -0.0885785354  -0.1441092795
+ H           1.0   0.5859352419  -1.4220645708   0.7057189485
+ H           1.0  -0.4192988710   0.9280008213   1.3779742606
+ F           9.0  -0.2410233420   2.2903896416   1.5979338086
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.04 ,  TOTAL =       54.3 SECONDS (    0.9 MIN)
+ WALL CLOCK TIME:   STEP =      0.03 ,  TOTAL =       55.5 SECONDS (    0.9 MIN)
+ CPU UTILIZATION:   STEP =    147.95%,  TOTAL =      97.93%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376251E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439553
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      2.94 ,  TOTAL =       57.3 SECONDS (    1.0 MIN)
+ WALL CLOCK TIME:   STEP =      2.99 ,  TOTAL =       58.5 SECONDS (    1.0 MIN)
+ CPU UTILIZATION:   STEP =     98.39%,  TOTAL =      97.95%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608928  -218.282608928   0.000006002   0.000001915
+   2  1  0  -218.282608928     0.000000000   0.000001487   0.000000907
+   3  2  0  -218.282608928     0.000000000   0.000000790   0.000000422
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       5.70 SECONDS (       1.90 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       4.74 SECONDS (       1.58 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.04 SECONDS (       0.01 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089281 AFTER   3 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220766546
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259815
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      5.74 ,  TOTAL =       63.0 SECONDS (    1.1 MIN)
+ WALL CLOCK TIME:   STEP =      5.86 ,  TOTAL =       64.3 SECONDS (    1.1 MIN)
+ CPU UTILIZATION:   STEP =     98.02%,  TOTAL =      97.96%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.92 ,  TOTAL =       65.9 SECONDS (    1.1 MIN)
+ WALL CLOCK TIME:   STEP =      3.00 ,  TOTAL =       67.3 SECONDS (    1.1 MIN)
+ CPU UTILIZATION:   STEP =     97.20%,  TOTAL =      97.92%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      3.18 ,  TOTAL =       69.1 SECONDS (    1.2 MIN)
+ WALL CLOCK TIME:   STEP =      3.22 ,  TOTAL =       70.5 SECONDS (    1.2 MIN)
+ CPU UTILIZATION:   STEP =     98.78%,  TOTAL =      97.96%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.017
+ LINEAR INTERPOLATION GIVES ANGLE          0.017
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001304 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.001 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0000028 BOHR
+
+ CONSTRAINED OPTIMIZATION POINT   6 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092959302   0.2760628301   0.3584996134
+ C           6.0  -0.7535261645   1.6274150890  -0.0738541844
+ C           6.0   0.4283026075  -0.6443151487  -0.0474329347
+ H           1.0  -1.6764540072  -0.1953560073   0.5337574202
+ H           1.0  -1.6896839392   2.1729316911  -0.1185962697
+ H           1.0   0.0726551601   2.0694700461  -0.6224151446
+ H           1.0   0.2376226178  -1.1482497915  -1.0025606916
+ H           1.0   1.3670128435  -0.0885784767  -0.1441095986
+ H           1.0   0.5859356248  -1.4220640326   0.7057194259
+ H           1.0  -0.4192983932   0.9280007043   1.3779744953
+ F           9.0  -0.2410233329   2.2903896611   1.5979338421
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =       69.1 SECONDS (    1.2 MIN)
+ WALL CLOCK TIME:   STEP =      0.01 ,  TOTAL =       70.5 SECONDS (    1.2 MIN)
+ CPU UTILIZATION:   STEP =    209.58%,  TOTAL =      97.98%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376245E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439553
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.06 ,  TOTAL =       70.2 SECONDS (    1.2 MIN)
+ WALL CLOCK TIME:   STEP =      1.07 ,  TOTAL =       71.6 SECONDS (    1.2 MIN)
+ CPU UTILIZATION:   STEP =     98.77%,  TOTAL =      97.99%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608928  -218.282608928   0.000001049   0.000000281
+   2  1  0  -218.282608928     0.000000000   0.000000788   0.000000583
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       1.32 SECONDS (       0.66 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       1.08 SECONDS (       0.54 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.02 SECONDS (       0.01 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089281 AFTER   2 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220768743
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259816
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      1.34 ,  TOTAL =       71.5 SECONDS (    1.2 MIN)
+ WALL CLOCK TIME:   STEP =      1.36 ,  TOTAL =       73.0 SECONDS (    1.2 MIN)
+ CPU UTILIZATION:   STEP =     98.79%,  TOTAL =      98.00%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.04 ,  TOTAL =       72.6 SECONDS (    1.2 MIN)
+ WALL CLOCK TIME:   STEP =      1.04 ,  TOTAL =       74.0 SECONDS (    1.2 MIN)
+ CPU UTILIZATION:   STEP =    100.43%,  TOTAL =      98.04%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.64 ,  TOTAL =       74.2 SECONDS (    1.2 MIN)
+ WALL CLOCK TIME:   STEP =      1.67 ,  TOTAL =       75.7 SECONDS (    1.3 MIN)
+ CPU UTILIZATION:   STEP =     98.49%,  TOTAL =      98.05%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.001
+ LINEAR INTERPOLATION GIVES ANGLE          0.001
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001304 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.000 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0000002 BOHR
+
+ ......ENERGY IS GOING UP......
+
+ CONSTRAINED OPTIMIZATION POINT   7 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092959184   0.2760628208   0.3584996120
+ C           6.0  -0.7535261704   1.6274150900  -0.0738541939
+ C           6.0   0.4283026100  -0.6443151539  -0.0474329423
+ H           1.0  -1.6764540246  -0.1953559688   0.5337574490
+ H           1.0  -1.6896839373   2.1729316996  -0.1185962461
+ H           1.0   0.0726551782   2.0694700436  -0.6224151535
+ H           1.0   0.2376225936  -1.1482497931  -1.0025606620
+ H           1.0   1.3670128222  -0.0885784506  -0.1441095842
+ H           1.0   0.5859356096  -1.4220640128   0.7057194568
+ H           1.0  -0.4192984579   0.9280007081   1.3779744533
+ F           9.0  -0.2410233317   2.2903896647   1.5979338497
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =       74.2 SECONDS (    1.2 MIN)
+ WALL CLOCK TIME:   STEP =      0.01 ,  TOTAL =       75.7 SECONDS (    1.3 MIN)
+ CPU UTILIZATION:   STEP =    216.83%,  TOTAL =      98.06%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376244E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439553
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.02 ,  TOTAL =       75.2 SECONDS (    1.3 MIN)
+ WALL CLOCK TIME:   STEP =      1.05 ,  TOTAL =       76.7 SECONDS (    1.3 MIN)
+ CPU UTILIZATION:   STEP =     97.12%,  TOTAL =      98.05%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608928  -218.282608928   0.000000293   0.000000082
+   2  1  0  -218.282608928     0.000000000   0.000000229   0.000000186
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       1.34 SECONDS (       0.67 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       1.12 SECONDS (       0.56 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.02 SECONDS (       0.01 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089280 AFTER   2 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220762111
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259816
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      1.36 ,  TOTAL =       76.6 SECONDS (    1.3 MIN)
+ WALL CLOCK TIME:   STEP =      1.36 ,  TOTAL =       78.1 SECONDS (    1.3 MIN)
+ CPU UTILIZATION:   STEP =     99.95%,  TOTAL =      98.08%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      0.98 ,  TOTAL =       77.6 SECONDS (    1.3 MIN)
+ WALL CLOCK TIME:   STEP =      1.00 ,  TOTAL =       79.1 SECONDS (    1.3 MIN)
+ CPU UTILIZATION:   STEP =     98.06%,  TOTAL =      98.08%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.56 ,  TOTAL =       79.1 SECONDS (    1.3 MIN)
+ WALL CLOCK TIME:   STEP =      1.56 ,  TOTAL =       80.7 SECONDS (    1.3 MIN)
+ CPU UTILIZATION:   STEP =     99.78%,  TOTAL =      98.12%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.000
+ LINEAR INTERPOLATION GIVES ANGLE          0.000
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001304 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.000 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0000001 BOHR
+
+ ......ENERGY IS GOING UP......
+
+ CONSTRAINED OPTIMIZATION POINT   8 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092959174   0.2760628246   0.3584996116
+ C           6.0  -0.7535261721   1.6274150841  -0.0738541980
+ C           6.0   0.4283026089  -0.6443151528  -0.0474329421
+ H           1.0  -1.6764540197  -0.1953559658   0.5337574548
+ H           1.0  -1.6896839301   2.1729317019  -0.1185962368
+ H           1.0   0.0726551829   2.0694700470  -0.6224151416
+ H           1.0   0.2376225931  -1.1482497952  -1.0025606605
+ H           1.0   1.3670128202  -0.0885784495  -0.1441095884
+ H           1.0   0.5859356138  -1.4220640150   0.7057194635
+ H           1.0  -0.4192984676   0.9280006986   1.3779744254
+ F           9.0  -0.2410233310   2.2903896656   1.5979338523
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.00 ,  TOTAL =       79.1 SECONDS (    1.3 MIN)
+ WALL CLOCK TIME:   STEP =      0.01 ,  TOTAL =       80.7 SECONDS (    1.3 MIN)
+ CPU UTILIZATION:   STEP =      0.00%,  TOTAL =      98.11%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376246E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439553
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.04 ,  TOTAL =       80.2 SECONDS (    1.3 MIN)
+ WALL CLOCK TIME:   STEP =      1.05 ,  TOTAL =       81.7 SECONDS (    1.4 MIN)
+ CPU UTILIZATION:   STEP =     99.02%,  TOTAL =      98.12%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608928  -218.282608928   0.000000053   0.000000017
+   2  1  0  -218.282608928     0.000000000   0.000000045   0.000000032
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       1.34 SECONDS (       0.67 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       1.10 SECONDS (       0.55 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.02 SECONDS (       0.01 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089281 AFTER   2 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220760773
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259816
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      1.36 ,  TOTAL =       81.5 SECONDS (    1.4 MIN)
+ WALL CLOCK TIME:   STEP =      1.36 ,  TOTAL =       83.1 SECONDS (    1.4 MIN)
+ CPU UTILIZATION:   STEP =     99.98%,  TOTAL =      98.15%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.00 ,  TOTAL =       82.5 SECONDS (    1.4 MIN)
+ WALL CLOCK TIME:   STEP =      0.99 ,  TOTAL =       84.1 SECONDS (    1.4 MIN)
+ CPU UTILIZATION:   STEP =    100.69%,  TOTAL =      98.18%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.56 ,  TOTAL =       84.1 SECONDS (    1.4 MIN)
+ WALL CLOCK TIME:   STEP =      1.61 ,  TOTAL =       85.7 SECONDS (    1.4 MIN)
+ CPU UTILIZATION:   STEP =     97.12%,  TOTAL =      98.16%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.000
+ LINEAR INTERPOLATION GIVES ANGLE          0.000
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001304 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.000 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0000001 BOHR
+
+ CONSTRAINED OPTIMIZATION POINT   9 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092959182   0.2760628266   0.3584996110
+ C           6.0  -0.7535261721   1.6274150818  -0.0738541993
+ C           6.0   0.4283026086  -0.6443151527  -0.0474329414
+ H           1.0  -1.6764540157  -0.1953559669   0.5337574536
+ H           1.0  -1.6896839285   2.1729317025  -0.1185962338
+ H           1.0   0.0726551811   2.0694700484  -0.6224151340
+ H           1.0   0.2376225944  -1.1482497982  -1.0025606631
+ H           1.0   1.3670128209  -0.0885784512  -0.1441095927
+ H           1.0   0.5859356167  -1.4220640142   0.7057194636
+ H           1.0  -0.4192984643   0.9280006978   1.3779744232
+ F           9.0  -0.2410233309   2.2903896659   1.5979338530
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =       84.1 SECONDS (    1.4 MIN)
+ WALL CLOCK TIME:   STEP =      0.01 ,  TOTAL =       85.7 SECONDS (    1.4 MIN)
+ CPU UTILIZATION:   STEP =    229.78%,  TOTAL =      98.17%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376246E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439553
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.02 ,  TOTAL =       85.1 SECONDS (    1.4 MIN)
+ WALL CLOCK TIME:   STEP =      1.02 ,  TOTAL =       86.7 SECONDS (    1.4 MIN)
+ CPU UTILIZATION:   STEP =     99.93%,  TOTAL =      98.19%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608928  -218.282608928   0.000000027   0.000000007
+   2  1  0  -218.282608928     0.000000000   0.000000019   0.000000016
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       1.34 SECONDS (       0.67 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       1.12 SECONDS (       0.56 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.00 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089279 AFTER   2 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220760472
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259816
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      1.34 ,  TOTAL =       86.5 SECONDS (    1.4 MIN)
+ WALL CLOCK TIME:   STEP =      1.35 ,  TOTAL =       88.1 SECONDS (    1.5 MIN)
+ CPU UTILIZATION:   STEP =     99.30%,  TOTAL =      98.21%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.00 ,  TOTAL =       87.5 SECONDS (    1.5 MIN)
+ WALL CLOCK TIME:   STEP =      1.01 ,  TOTAL =       89.1 SECONDS (    1.5 MIN)
+ CPU UTILIZATION:   STEP =     99.40%,  TOTAL =      98.22%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.54 ,  TOTAL =       89.0 SECONDS (    1.5 MIN)
+ WALL CLOCK TIME:   STEP =      1.56 ,  TOTAL =       90.6 SECONDS (    1.5 MIN)
+ CPU UTILIZATION:   STEP =     98.64%,  TOTAL =      98.23%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.000
+ LINEAR INTERPOLATION GIVES ANGLE         -0.001
+
+ INTERPOLATION BECOMES EXTRAPOLATION SKIPPING INTERPOLATION THIS STEP
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001304 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.000 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0000000 BOHR
+
+ ......ENERGY IS GOING UP......
+
+ CONSTRAINED OPTIMIZATION POINT  10 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092959185   0.2760628273   0.3584996108
+ C           6.0  -0.7535261721   1.6274150810  -0.0738541999
+ C           6.0   0.4283026083  -0.6443151524  -0.0474329410
+ H           1.0  -1.6764540135  -0.1953559673   0.5337574532
+ H           1.0  -1.6896839275   2.1729317029  -0.1185962331
+ H           1.0   0.0726551794   2.0694700481  -0.6224151323
+ H           1.0   0.2376225947  -1.1482497999  -1.0025606635
+ H           1.0   1.3670128217  -0.0885784521  -0.1441095940
+ H           1.0   0.5859356174  -1.4220640128   0.7057194617
+ H           1.0  -0.4192984634   0.9280006923   1.3779744231
+ F           9.0  -0.2410233308   2.2903896662   1.5979338533
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =       89.0 SECONDS (    1.5 MIN)
+ WALL CLOCK TIME:   STEP =      0.01 ,  TOTAL =       90.6 SECONDS (    1.5 MIN)
+ CPU UTILIZATION:   STEP =    233.97%,  TOTAL =      98.24%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376246E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439554
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.04 ,  TOTAL =       90.1 SECONDS (    1.5 MIN)
+ WALL CLOCK TIME:   STEP =      1.05 ,  TOTAL =       91.7 SECONDS (    1.5 MIN)
+ CPU UTILIZATION:   STEP =     98.77%,  TOTAL =      98.25%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608928  -218.282608928   0.000000007   0.000000001
+   2  1  0  -218.282608928     0.000000000   0.000000002   0.000000001
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       1.36 SECONDS (       0.68 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       1.14 SECONDS (       0.57 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.00 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089281 AFTER   2 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220760322
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259816
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      1.36 ,  TOTAL =       91.4 SECONDS (    1.5 MIN)
+ WALL CLOCK TIME:   STEP =      1.37 ,  TOTAL =       93.1 SECONDS (    1.6 MIN)
+ CPU UTILIZATION:   STEP =     98.92%,  TOTAL =      98.26%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.02 ,  TOTAL =       92.5 SECONDS (    1.5 MIN)
+ WALL CLOCK TIME:   STEP =      1.04 ,  TOTAL =       94.1 SECONDS (    1.6 MIN)
+ CPU UTILIZATION:   STEP =     98.25%,  TOTAL =      98.26%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.68 ,  TOTAL =       94.1 SECONDS (    1.6 MIN)
+ WALL CLOCK TIME:   STEP =      1.68 ,  TOTAL =       95.8 SECONDS (    1.6 MIN)
+ CPU UTILIZATION:   STEP =     99.85%,  TOTAL =      98.29%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.000
+ LINEAR INTERPOLATION GIVES ANGLE          0.000
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001304 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.000 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0000006 BOHR
+
+ CONSTRAINED OPTIMIZATION POINT  11 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092959186   0.2760628277   0.3584996108
+ C           6.0  -0.7535261722   1.6274150804  -0.0738542002
+ C           6.0   0.4283026081  -0.6443151522  -0.0474329409
+ H           1.0  -1.6764540126  -0.1953559676   0.5337574533
+ H           1.0  -1.6896839265   2.1729317027  -0.1185962329
+ H           1.0   0.0726551793   2.0694700482  -0.6224151319
+ H           1.0   0.2376225949  -1.1482498006  -1.0025606640
+ H           1.0   1.3670128222  -0.0885784523  -0.1441095941
+ H           1.0   0.5859356178  -1.4220640141   0.7057194620
+ H           1.0  -0.4192984633   0.9280006947   1.3779744217
+ F           9.0  -0.2410233308   2.2903896662   1.5979338535
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =       94.2 SECONDS (    1.6 MIN)
+ WALL CLOCK TIME:   STEP =      0.01 ,  TOTAL =       95.8 SECONDS (    1.6 MIN)
+ CPU UTILIZATION:   STEP =    213.93%,  TOTAL =      98.30%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376246E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439554
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.10 ,  TOTAL =       95.3 SECONDS (    1.6 MIN)
+ WALL CLOCK TIME:   STEP =      1.10 ,  TOTAL =       96.9 SECONDS (    1.6 MIN)
+ CPU UTILIZATION:   STEP =     99.68%,  TOTAL =      98.31%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608928  -218.282608928   0.000000005   0.000000001
+   2  1  0  -218.282608928     0.000000000   0.000000001   0.000000000
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       1.76 SECONDS (       0.88 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       1.50 SECONDS (       0.75 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.00 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089278 AFTER   2 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220760310
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259816
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      1.76 ,  TOTAL =       97.0 SECONDS (    1.6 MIN)
+ WALL CLOCK TIME:   STEP =      1.79 ,  TOTAL =       98.7 SECONDS (    1.6 MIN)
+ CPU UTILIZATION:   STEP =     98.50%,  TOTAL =      98.32%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.74 ,  TOTAL =       98.8 SECONDS (    1.6 MIN)
+ WALL CLOCK TIME:   STEP =      1.76 ,  TOTAL =      100.4 SECONDS (    1.7 MIN)
+ CPU UTILIZATION:   STEP =     98.83%,  TOTAL =      98.33%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.76 ,  TOTAL =      101.5 SECONDS (    1.7 MIN)
+ WALL CLOCK TIME:   STEP =      2.78 ,  TOTAL =      103.2 SECONDS (    1.7 MIN)
+ CPU UTILIZATION:   STEP =     99.22%,  TOTAL =      98.35%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.000
+ LINEAR INTERPOLATION GIVES ANGLE          0.092
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001304 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.091 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0002140 BOHR
+
+ ......ENERGY IS GOING UP......
+
+ CONSTRAINED OPTIMIZATION POINT  12 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092959184   0.2760628259   0.3584996101
+ C           6.0  -0.7535261716   1.6274150822  -0.0738541997
+ C           6.0   0.4283026089  -0.6443151533  -0.0474329408
+ H           1.0  -1.6764540166  -0.1953559661   0.5337574547
+ H           1.0  -1.6896839330   2.1729317051  -0.1185962319
+ H           1.0   0.0726551806   2.0694700478  -0.6224151322
+ H           1.0   0.2376225938  -1.1482497973  -1.0025606583
+ H           1.0   1.3670128200  -0.0885784513  -0.1441095950
+ H           1.0   0.5859356147  -1.4220640051   0.7057194553
+ H           1.0  -0.4192984625   0.9280006913   1.3779744369
+ F           9.0  -0.2410233309   2.2903896662   1.5979338528
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =      101.5 SECONDS (    1.7 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      103.2 SECONDS (    1.7 MIN)
+ CPU UTILIZATION:   STEP =    131.46%,  TOTAL =      98.35%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376246E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439554
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.76 ,  TOTAL =      103.3 SECONDS (    1.7 MIN)
+ WALL CLOCK TIME:   STEP =      1.78 ,  TOTAL =      105.0 SECONDS (    1.8 MIN)
+ CPU UTILIZATION:   STEP =     98.80%,  TOTAL =      98.36%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608928  -218.282608928   0.000000005   0.000000002
+   2  1  0  -218.282608928     0.000000000   0.000000003   0.000000001
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       2.28 SECONDS (       1.14 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       1.88 SECONDS (       0.94 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.00 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089281 AFTER   2 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220760320
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259816
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      2.28 ,  TOTAL =      105.6 SECONDS (    1.8 MIN)
+ WALL CLOCK TIME:   STEP =      2.31 ,  TOTAL =      107.3 SECONDS (    1.8 MIN)
+ CPU UTILIZATION:   STEP =     98.51%,  TOTAL =      98.36%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.70 ,  TOTAL =      107.3 SECONDS (    1.8 MIN)
+ WALL CLOCK TIME:   STEP =      1.72 ,  TOTAL =      109.1 SECONDS (    1.8 MIN)
+ CPU UTILIZATION:   STEP =     98.86%,  TOTAL =      98.37%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.74 ,  TOTAL =      110.0 SECONDS (    1.8 MIN)
+ WALL CLOCK TIME:   STEP =      2.76 ,  TOTAL =      111.8 SECONDS (    1.9 MIN)
+ CPU UTILIZATION:   STEP =     99.42%,  TOTAL =      98.40%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.091
+ LINEAR INTERPOLATION GIVES ANGLE        -34.047
+
+ INTERPOLATION TOO FAR FROM END POINTS. ACUT =   5.000
+ SKIPPING INTERPOLATION THIS STEP
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001304 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.000 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0000000 BOHR
+
+ CONSTRAINED OPTIMIZATION POINT  13 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092959186   0.2760628273   0.3584996106
+ C           6.0  -0.7535261723   1.6274150805  -0.0738542003
+ C           6.0   0.4283026083  -0.6443151524  -0.0474329408
+ H           1.0  -1.6764540128  -0.1953559669   0.5337574529
+ H           1.0  -1.6896839271   2.1729317033  -0.1185962318
+ H           1.0   0.0726551788   2.0694700483  -0.6224151304
+ H           1.0   0.2376225945  -1.1482497997  -1.0025606641
+ H           1.0   1.3670128219  -0.0885784519  -0.1441095942
+ H           1.0   0.5859356171  -1.4220640135   0.7057194605
+ H           1.0  -0.4192984623   0.9280006949   1.3779744229
+ F           9.0  -0.2410233307   2.2903896663   1.5979338535
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.00 ,  TOTAL =      110.0 SECONDS (    1.8 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      111.8 SECONDS (    1.9 MIN)
+ CPU UTILIZATION:   STEP =      0.00%,  TOTAL =      98.38%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376246E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439554
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.80 ,  TOTAL =      111.8 SECONDS (    1.9 MIN)
+ WALL CLOCK TIME:   STEP =      1.80 ,  TOTAL =      113.6 SECONDS (    1.9 MIN)
+ CPU UTILIZATION:   STEP =    100.01%,  TOTAL =      98.41%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608928  -218.282608928   0.000000004   0.000000002
+   2  1  0  -218.282608928     0.000000000   0.000000004   0.000000002
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       2.30 SECONDS (       1.15 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       1.90 SECONDS (       0.95 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.00 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089278 AFTER   2 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220760341
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259816
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      2.30 ,  TOTAL =      114.1 SECONDS (    1.9 MIN)
+ WALL CLOCK TIME:   STEP =      2.33 ,  TOTAL =      116.0 SECONDS (    1.9 MIN)
+ CPU UTILIZATION:   STEP =     98.52%,  TOTAL =      98.41%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.72 ,  TOTAL =      115.8 SECONDS (    1.9 MIN)
+ WALL CLOCK TIME:   STEP =      1.72 ,  TOTAL =      117.7 SECONDS (    2.0 MIN)
+ CPU UTILIZATION:   STEP =     99.88%,  TOTAL =      98.43%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.90 ,  TOTAL =      118.7 SECONDS (    2.0 MIN)
+ WALL CLOCK TIME:   STEP =      2.94 ,  TOTAL =      120.6 SECONDS (    2.0 MIN)
+ CPU UTILIZATION:   STEP =     98.69%,  TOTAL =      98.44%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.000
+ LINEAR INTERPOLATION GIVES ANGLE          0.000
+
+ INTERPOLATION BECOMES EXTRAPOLATION SKIPPING INTERPOLATION THIS STEP
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001304 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.000 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0000000 BOHR
+
+ ......ENERGY IS GOING UP......
+
+ CONSTRAINED OPTIMIZATION POINT  14 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092959186   0.2760628276   0.3584996108
+ C           6.0  -0.7535261721   1.6274150807  -0.0738541999
+ C           6.0   0.4283026081  -0.6443151522  -0.0474329410
+ H           1.0  -1.6764540128  -0.1953559677   0.5337574534
+ H           1.0  -1.6896839268   2.1729317026  -0.1185962332
+ H           1.0   0.0726551792   2.0694700481  -0.6224151327
+ H           1.0   0.2376225948  -1.1482498006  -1.0025606641
+ H           1.0   1.3670128222  -0.0885784522  -0.1441095943
+ H           1.0   0.5859356177  -1.4220640140   0.7057194618
+ H           1.0  -0.4192984635   0.9280006937   1.3779744226
+ F           9.0  -0.2410233307   2.2903896661   1.5979338534
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =      118.8 SECONDS (    2.0 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      120.6 SECONDS (    2.0 MIN)
+ CPU UTILIZATION:   STEP =    128.56%,  TOTAL =      98.44%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376246E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439554
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.80 ,  TOTAL =      120.6 SECONDS (    2.0 MIN)
+ WALL CLOCK TIME:   STEP =      1.83 ,  TOTAL =      122.5 SECONDS (    2.0 MIN)
+ CPU UTILIZATION:   STEP =     98.27%,  TOTAL =      98.44%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608928  -218.282608928   0.000000006   0.000000002
+   2  1  0  -218.282608928     0.000000000   0.000000005   0.000000004
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       2.30 SECONDS (       1.15 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       1.90 SECONDS (       0.95 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.00 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089279 AFTER   2 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220760350
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259816
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      2.30 ,  TOTAL =      122.9 SECONDS (    2.0 MIN)
+ WALL CLOCK TIME:   STEP =      2.32 ,  TOTAL =      124.8 SECONDS (    2.1 MIN)
+ CPU UTILIZATION:   STEP =     99.13%,  TOTAL =      98.45%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.70 ,  TOTAL =      124.6 SECONDS (    2.1 MIN)
+ WALL CLOCK TIME:   STEP =      1.72 ,  TOTAL =      126.5 SECONDS (    2.1 MIN)
+ CPU UTILIZATION:   STEP =     98.70%,  TOTAL =      98.46%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.72 ,  TOTAL =      127.3 SECONDS (    2.1 MIN)
+ WALL CLOCK TIME:   STEP =      2.76 ,  TOTAL =      129.3 SECONDS (    2.2 MIN)
+ CPU UTILIZATION:   STEP =     98.69%,  TOTAL =      98.46%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.000
+ LINEAR INTERPOLATION GIVES ANGLE          0.000
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001304 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.000 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0000007 BOHR
+
+ CONSTRAINED OPTIMIZATION POINT  15 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092959185   0.2760628276   0.3584996108
+ C           6.0  -0.7535261722   1.6274150806  -0.0738542000
+ C           6.0   0.4283026081  -0.6443151522  -0.0474329410
+ H           1.0  -1.6764540129  -0.1953559677   0.5337574534
+ H           1.0  -1.6896839268   2.1729317026  -0.1185962331
+ H           1.0   0.0726551794   2.0694700482  -0.6224151322
+ H           1.0   0.2376225948  -1.1482498005  -1.0025606639
+ H           1.0   1.3670128221  -0.0885784522  -0.1441095942
+ H           1.0   0.5859356177  -1.4220640138   0.7057194619
+ H           1.0  -0.4192984635   0.9280006940   1.3779744220
+ F           9.0  -0.2410233307   2.2903896661   1.5979338535
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =      127.3 SECONDS (    2.1 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      129.3 SECONDS (    2.2 MIN)
+ CPU UTILIZATION:   STEP =    131.08%,  TOTAL =      98.47%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376246E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439554
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.80 ,  TOTAL =      129.1 SECONDS (    2.2 MIN)
+ WALL CLOCK TIME:   STEP =      1.82 ,  TOTAL =      131.1 SECONDS (    2.2 MIN)
+ CPU UTILIZATION:   STEP =     99.00%,  TOTAL =      98.47%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608928  -218.282608928   0.000000004   0.000000001
+   2  1  0  -218.282608928     0.000000000   0.000000002   0.000000001
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       2.32 SECONDS (       1.16 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       1.92 SECONDS (       0.96 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.02 SECONDS (       0.01 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089278 AFTER   2 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220760323
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259816
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      2.34 ,  TOTAL =      131.4 SECONDS (    2.2 MIN)
+ WALL CLOCK TIME:   STEP =      2.35 ,  TOTAL =      133.5 SECONDS (    2.2 MIN)
+ CPU UTILIZATION:   STEP =     99.55%,  TOTAL =      98.49%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.70 ,  TOTAL =      133.1 SECONDS (    2.2 MIN)
+ WALL CLOCK TIME:   STEP =      1.71 ,  TOTAL =      135.2 SECONDS (    2.3 MIN)
+ CPU UTILIZATION:   STEP =     99.53%,  TOTAL =      98.51%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.70 ,  TOTAL =      135.8 SECONDS (    2.3 MIN)
+ WALL CLOCK TIME:   STEP =      2.71 ,  TOTAL =      137.9 SECONDS (    2.3 MIN)
+ CPU UTILIZATION:   STEP =     99.65%,  TOTAL =      98.53%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.000
+ LINEAR INTERPOLATION GIVES ANGLE         -0.565
+
+ INTERPOLATION BECOMES EXTRAPOLATION SKIPPING INTERPOLATION THIS STEP
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001304 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.000 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0000000 BOHR
+
+ ......ENERGY IS GOING UP......
+
+ CONSTRAINED OPTIMIZATION POINT  16 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092959185   0.2760628276   0.3584996109
+ C           6.0  -0.7535261721   1.6274150807  -0.0738541999
+ C           6.0   0.4283026081  -0.6443151522  -0.0474329410
+ H           1.0  -1.6764540128  -0.1953559676   0.5337574533
+ H           1.0  -1.6896839268   2.1729317027  -0.1185962331
+ H           1.0   0.0726551792   2.0694700481  -0.6224151324
+ H           1.0   0.2376225948  -1.1482498005  -1.0025606640
+ H           1.0   1.3670128221  -0.0885784522  -0.1441095942
+ H           1.0   0.5859356177  -1.4220640138   0.7057194618
+ H           1.0  -0.4192984637   0.9280006921   1.3779744220
+ F           9.0  -0.2410233307   2.2903896661   1.5979338534
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =      135.9 SECONDS (    2.3 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      137.9 SECONDS (    2.3 MIN)
+ CPU UTILIZATION:   STEP =    131.02%,  TOTAL =      98.53%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376246E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439554
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.78 ,  TOTAL =      137.6 SECONDS (    2.3 MIN)
+ WALL CLOCK TIME:   STEP =      1.77 ,  TOTAL =      139.6 SECONDS (    2.3 MIN)
+ CPU UTILIZATION:   STEP =    100.82%,  TOTAL =      98.56%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608928  -218.282608928   0.000000004   0.000000001
+   2  1  0  -218.282608928     0.000000000   0.000000002   0.000000001
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       2.26 SECONDS (       1.13 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       1.90 SECONDS (       0.95 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.04 SECONDS (       0.02 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089280 AFTER   2 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220760317
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259816
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      2.30 ,  TOTAL =      139.9 SECONDS (    2.3 MIN)
+ WALL CLOCK TIME:   STEP =      2.30 ,  TOTAL =      142.0 SECONDS (    2.4 MIN)
+ CPU UTILIZATION:   STEP =     99.79%,  TOTAL =      98.58%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.68 ,  TOTAL =      141.6 SECONDS (    2.4 MIN)
+ WALL CLOCK TIME:   STEP =      1.69 ,  TOTAL =      143.6 SECONDS (    2.4 MIN)
+ CPU UTILIZATION:   STEP =     99.25%,  TOTAL =      98.59%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.70 ,  TOTAL =      144.3 SECONDS (    2.4 MIN)
+ WALL CLOCK TIME:   STEP =      2.70 ,  TOTAL =      146.3 SECONDS (    2.4 MIN)
+ CPU UTILIZATION:   STEP =    100.02%,  TOTAL =      98.62%
+
+ WARNING! POSITIVE DEFINITENESS ENDANGERED IN BFGS UPDATE OF HESSIAN. THIS MAY CAUSE TROUBLE LATER....
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.000
+ LINEAR INTERPOLATION GIVES ANGLE          0.016
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001304 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.003 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0000398 BOHR
+
+ CONSTRAINED OPTIMIZATION POINT  17 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092959185   0.2760628276   0.3584996108
+ C           6.0  -0.7535261722   1.6274150806  -0.0738541999
+ C           6.0   0.4283026081  -0.6443151522  -0.0474329410
+ H           1.0  -1.6764540130  -0.1953559677   0.5337574533
+ H           1.0  -1.6896839269   2.1729317027  -0.1185962332
+ H           1.0   0.0726551794   2.0694700482  -0.6224151323
+ H           1.0   0.2376225949  -1.1482498005  -1.0025606639
+ H           1.0   1.3670128221  -0.0885784522  -0.1441095942
+ H           1.0   0.5859356177  -1.4220640139   0.7057194619
+ H           1.0  -0.4192984634   0.9280006936   1.3779744219
+ F           9.0  -0.2410233307   2.2903896661   1.5979338534
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =      144.3 SECONDS (    2.4 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      146.4 SECONDS (    2.4 MIN)
+ CPU UTILIZATION:   STEP =    132.30%,  TOTAL =      98.62%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376246E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439554
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.78 ,  TOTAL =      146.1 SECONDS (    2.4 MIN)
+ WALL CLOCK TIME:   STEP =      1.78 ,  TOTAL =      148.1 SECONDS (    2.5 MIN)
+ CPU UTILIZATION:   STEP =     99.92%,  TOTAL =      98.63%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608928  -218.282608928   0.000000006   0.000000001
+   2  1  0  -218.282608928     0.000000000   0.000000002   0.000000002
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       2.28 SECONDS (       1.14 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       1.88 SECONDS (       0.94 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.02 SECONDS (       0.01 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089278 AFTER   2 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220760328
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259816
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      2.30 ,  TOTAL =      148.4 SECONDS (    2.5 MIN)
+ WALL CLOCK TIME:   STEP =      2.31 ,  TOTAL =      150.4 SECONDS (    2.5 MIN)
+ CPU UTILIZATION:   STEP =     99.74%,  TOTAL =      98.65%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.94 ,  TOTAL =      150.4 SECONDS (    2.5 MIN)
+ WALL CLOCK TIME:   STEP =      1.93 ,  TOTAL =      152.4 SECONDS (    2.5 MIN)
+ CPU UTILIZATION:   STEP =    100.34%,  TOTAL =      98.67%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.94 ,  TOTAL =      153.3 SECONDS (    2.6 MIN)
+ WALL CLOCK TIME:   STEP =      2.95 ,  TOTAL =      155.3 SECONDS (    2.6 MIN)
+ CPU UTILIZATION:   STEP =     99.78%,  TOTAL =      98.69%
+
+ WARNING! POSITIVE DEFINITENESS ENDANGERED IN BFGS UPDATE OF HESSIAN. THIS MAY CAUSE TROUBLE LATER....
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.003
+ LINEAR INTERPOLATION GIVES ANGLE        -46.616
+
+ INTERPOLATION TOO FAR FROM END POINTS. ACUT =   5.000
+ SKIPPING INTERPOLATION THIS STEP
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001304 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.000 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0000000 BOHR
+
+ ......ENERGY IS GOING UP......
+
+ CONSTRAINED OPTIMIZATION POINT  18 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092959186   0.2760628277   0.3584996107
+ C           6.0  -0.7535261722   1.6274150804  -0.0738542002
+ C           6.0   0.4283026081  -0.6443151522  -0.0474329410
+ H           1.0  -1.6764540127  -0.1953559676   0.5337574537
+ H           1.0  -1.6896839266   2.1729317026  -0.1185962328
+ H           1.0   0.0726551792   2.0694700481  -0.6224151323
+ H           1.0   0.2376225948  -1.1482498005  -1.0025606639
+ H           1.0   1.3670128221  -0.0885784523  -0.1441095943
+ H           1.0   0.5859356177  -1.4220640138   0.7057194618
+ H           1.0  -0.4192984634   0.9280006951   1.3779744223
+ F           9.0  -0.2410233307   2.2903896661   1.5979338536
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =      153.3 SECONDS (    2.6 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      155.3 SECONDS (    2.6 MIN)
+ CPU UTILIZATION:   STEP =    126.95%,  TOTAL =      98.70%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376246E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439554
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.90 ,  TOTAL =      155.2 SECONDS (    2.6 MIN)
+ WALL CLOCK TIME:   STEP =      1.88 ,  TOTAL =      157.2 SECONDS (    2.6 MIN)
+ CPU UTILIZATION:   STEP =    100.94%,  TOTAL =      98.72%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608928  -218.282608928   0.000000003   0.000000001
+   2  1  0  -218.282608928     0.000000000   0.000000002   0.000000001
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       2.40 SECONDS (       1.20 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       1.98 SECONDS (       0.99 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.00 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089278 AFTER   2 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220760318
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259816
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      2.42 ,  TOTAL =      157.6 SECONDS (    2.6 MIN)
+ WALL CLOCK TIME:   STEP =      2.42 ,  TOTAL =      159.6 SECONDS (    2.7 MIN)
+ CPU UTILIZATION:   STEP =    100.18%,  TOTAL =      98.75%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.78 ,  TOTAL =      159.4 SECONDS (    2.7 MIN)
+ WALL CLOCK TIME:   STEP =      1.78 ,  TOTAL =      161.4 SECONDS (    2.7 MIN)
+ CPU UTILIZATION:   STEP =     99.80%,  TOTAL =      98.76%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.90 ,  TOTAL =      162.3 SECONDS (    2.7 MIN)
+ WALL CLOCK TIME:   STEP =      2.90 ,  TOTAL =      164.3 SECONDS (    2.7 MIN)
+ CPU UTILIZATION:   STEP =     99.93%,  TOTAL =      98.78%
+
+ WARNING! POSITIVE DEFINITENESS ENDANGERED IN BFGS UPDATE OF HESSIAN. THIS MAY CAUSE TROUBLE LATER....
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.000
+ LINEAR INTERPOLATION GIVES ANGLE         -0.002
+
+ INTERPOLATION BECOMES EXTRAPOLATION SKIPPING INTERPOLATION THIS STEP
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001304 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =       120.955 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.2539349 BOHR
+
+ ......ENERGY IS GOING UP......
+
+ CONSTRAINED OPTIMIZATION POINT  19 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7091620628   0.2758070710   0.3543907909
+ C           6.0  -0.7565130590   1.6223449062  -0.0751524868
+ C           6.0   0.4277719275  -0.6440791977  -0.0476616181
+ H           1.0  -1.7011388875  -0.2107291983   0.5305767182
+ H           1.0  -1.7176326504   2.1837081663  -0.1338260883
+ H           1.0   0.0950558904   2.0821468213  -0.6060037215
+ H           1.0   0.2376142693  -1.1505341647  -0.9976447578
+ H           1.0   1.3704820828  -0.0831671072  -0.1404828843
+ H           1.0   0.5910837835  -1.4300385925   0.7147053501
+ H           1.0  -0.3853095379   1.0442771573   1.3898064587
+ F           9.0  -0.2395420142   2.2872649655   1.6000421332
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =      162.3 SECONDS (    2.7 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      164.3 SECONDS (    2.7 MIN)
+ CPU UTILIZATION:   STEP =    130.49%,  TOTAL =      98.78%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27397290E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8408704
+       1683 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.98 ,  TOTAL =      164.3 SECONDS (    2.7 MIN)
+ WALL CLOCK TIME:   STEP =      2.00 ,  TOTAL =      166.3 SECONDS (    2.8 MIN)
+ CPU UTILIZATION:   STEP =     99.20%,  TOTAL =      98.79%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.269860026  -218.269860026   0.050804787   0.018872191
+   2  1  0  -218.274979836    -0.005119810   0.014107848   0.015956368
+   3  2  0  -218.276488098    -0.001508262   0.009013527   0.002575765
+   4  3  0  -218.276564411    -0.000076312   0.002810607   0.003256943
+   5  4  0  -218.276603764    -0.000039354   0.001193100   0.000844354
+   6  5  0  -218.276611085    -0.000007321   0.000296876   0.000175245
+   7  6  0  -218.276611433    -0.000000348   0.000105903   0.000054495
+   8  7  0  -218.276611475    -0.000000042   0.000015632   0.000012025
+   9  8  0  -218.276611477    -0.000000002   0.000002993   0.000001940
+  10  9  0  -218.276611477     0.000000000   0.000001045   0.000000729
+  11 10  0  -218.276611477     0.000000000   0.000000229   0.000000196
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =      12.76 SECONDS (       1.16 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =      10.58 SECONDS (       0.96 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.06 SECONDS (       0.01 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2766114772 AFTER  11 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.6958616164
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       33.9999846458
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =     12.82 ,  TOTAL =      177.1 SECONDS (    3.0 MIN)
+ WALL CLOCK TIME:   STEP =     12.81 ,  TOTAL =      179.2 SECONDS (    3.0 MIN)
+ CPU UTILIZATION:   STEP =    100.05%,  TOTAL =      98.88%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.78 ,  TOTAL =      178.9 SECONDS (    3.0 MIN)
+ WALL CLOCK TIME:   STEP =      1.78 ,  TOTAL =      180.9 SECONDS (    3.0 MIN)
+ CPU UTILIZATION:   STEP =    100.25%,  TOTAL =      98.89%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.74 ,  TOTAL =      181.7 SECONDS (    3.0 MIN)
+ WALL CLOCK TIME:   STEP =      2.75 ,  TOTAL =      183.7 SECONDS (    3.1 MIN)
+ CPU UTILIZATION:   STEP =     99.69%,  TOTAL =      98.90%
+
+ WARNING! POSITIVE DEFINITENESS ENDANGERED IN BFGS UPDATE OF HESSIAN. THIS MAY CAUSE TROUBLE LATER....
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS 120.955
+ LINEAR INTERPOLATION GIVES ANGLE          0.023
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2766115 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0209846 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =       118.489 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.2360546 BOHR
+
+ ......ENERGY IS GOING UP......
+
+ CONSTRAINED OPTIMIZATION POINT  20 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7133157031   0.2774799384   0.3515161532
+ C           6.0  -0.7567159016   1.6204507706  -0.0823233039
+ C           6.0   0.4292512587  -0.6445266192  -0.0448009212
+ H           1.0  -1.6402390449  -0.1749268664   0.5450621498
+ H           1.0  -1.6533114654   2.1552572724  -0.1054692762
+ H           1.0   0.0519596296   2.0576913415  -0.6095315722
+ H           1.0   0.2364619291  -1.1503545200  -1.0069023040
+ H           1.0   1.3615219920  -0.0933844353  -0.1464125692
+ H           1.0   0.5839328807  -1.4099074295   0.6941837538
+ H           1.0  -0.4109801270   1.0268073389   1.4056065235
+ F           9.0  -0.2398037044   2.2889859641   1.6035508294
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =      181.7 SECONDS (    3.0 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      183.7 SECONDS (    3.1 MIN)
+ CPU UTILIZATION:   STEP =    130.74%,  TOTAL =      98.90%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27559643E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8461797
+       1694 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.88 ,  TOTAL =      183.6 SECONDS (    3.1 MIN)
+ WALL CLOCK TIME:   STEP =      1.88 ,  TOTAL =      185.6 SECONDS (    3.1 MIN)
+ CPU UTILIZATION:   STEP =     99.90%,  TOTAL =      98.91%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.273168568  -218.273168568   0.023374497   0.013062720
+   2  1  0  -218.274903823    -0.001735255   0.008032001   0.005497893
+   3  2  0  -218.275313652    -0.000409829   0.004734397   0.002343995
+   4  3  0  -218.275336073    -0.000022422   0.001846088   0.001609198
+   5  4  0  -218.275352435    -0.000016362   0.000444748   0.000254702
+   6  5  0  -218.275353314    -0.000000879   0.000196274   0.000115875
+   7  6  0  -218.275353428    -0.000000114   0.000048696   0.000027294
+   8  7  0  -218.275353439    -0.000000011   0.000005036   0.000003295
+   9  8  0  -218.275353439     0.000000000   0.000001444   0.000000665
+  10  9  0  -218.275353439     0.000000000   0.000000464   0.000000222
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =      10.98 SECONDS (       1.10 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       9.02 SECONDS (       0.90 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.06 SECONDS (       0.01 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2753534393 AFTER  10 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7565702602
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       33.9999911502
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =     11.04 ,  TOTAL =      194.6 SECONDS (    3.2 MIN)
+ WALL CLOCK TIME:   STEP =     11.04 ,  TOTAL =      196.6 SECONDS (    3.3 MIN)
+ CPU UTILIZATION:   STEP =    100.02%,  TOTAL =      98.98%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.68 ,  TOTAL =      196.3 SECONDS (    3.3 MIN)
+ WALL CLOCK TIME:   STEP =      1.68 ,  TOTAL =      198.3 SECONDS (    3.3 MIN)
+ CPU UTILIZATION:   STEP =     99.80%,  TOTAL =      98.98%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.72 ,  TOTAL =      199.0 SECONDS (    3.3 MIN)
+ WALL CLOCK TIME:   STEP =      2.73 ,  TOTAL =      201.0 SECONDS (    3.4 MIN)
+ CPU UTILIZATION:   STEP =     99.68%,  TOTAL =      98.99%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS 118.489
+ LINEAR INTERPOLATION GIVES ANGLE        621.099
+
+ INTERPOLATION TOO FAR FROM END POINTS. ACUT =   5.000
+ SKIPPING INTERPOLATION THIS STEP
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2753534 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0236348 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =       118.481 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.2360078 BOHR
+
+ ......ENERGY IS GOING UP......
+
+ CONSTRAINED OPTIMIZATION POINT  21 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7093118434   0.2760646775   0.3585261179
+ C           6.0  -0.7535325995   1.6274074192  -0.0738564166
+ C           6.0   0.4282611981  -0.6443397687  -0.0474157277
+ H           1.0  -1.6764801804  -0.1953389018   0.5338214340
+ H           1.0  -1.6896905443   2.1729428524  -0.1185867621
+ H           1.0   0.0726495825   2.0694433742  -0.6224523981
+ H           1.0   0.2375488941  -1.1482920823  -1.0025236240
+ H           1.0   1.3669777904  -0.0886212433  -0.1441282543
+ H           1.0   0.5859036745  -1.4220779420   0.7057527898
+ H           1.0  -0.4192718210   0.9280212781   1.3779743528
+ F           9.0  -0.2409749713   2.2904129636   1.5979029793
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =      199.0 SECONDS (    3.3 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      201.0 SECONDS (    3.4 MIN)
+ CPU UTILIZATION:   STEP =    130.12%,  TOTAL =      98.99%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376336E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439527
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.84 ,  TOTAL =      200.9 SECONDS (    3.3 MIN)
+ WALL CLOCK TIME:   STEP =      1.84 ,  TOTAL =      202.9 SECONDS (    3.4 MIN)
+ CPU UTILIZATION:   STEP =    100.20%,  TOTAL =      99.01%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.276540288  -218.276540288   0.046655245   0.023640148
+   2  1  0  -218.281226051    -0.004685763   0.012666589   0.014997586
+   3  2  0  -218.282474526    -0.001248476   0.009387699   0.002506444
+   4  3  0  -218.282482752    -0.000008226   0.004581635   0.004598881
+   5  4  0  -218.282602922    -0.000120169   0.000964047   0.000757708
+   6  5  0  -218.282608401    -0.000005479   0.000287357   0.000169131
+   7  6  0  -218.282608849    -0.000000448   0.000135356   0.000050668
+   8  7  0  -218.282608893    -0.000000044   0.000021000   0.000012317
+   9  8  0  -218.282608895    -0.000000003   0.000003063   0.000002019
+  10  9  0  -218.282608895     0.000000000   0.000001363   0.000000923
+  11 10  0  -218.282608895     0.000000000   0.000000270   0.000000186
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =      12.22 SECONDS (       1.11 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       9.92 SECONDS (       0.90 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.02 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826088955 AFTER  11 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220682688
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259640
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =     12.24 ,  TOTAL =      213.1 SECONDS (    3.6 MIN)
+ WALL CLOCK TIME:   STEP =     12.25 ,  TOTAL =      215.1 SECONDS (    3.6 MIN)
+ CPU UTILIZATION:   STEP =     99.93%,  TOTAL =      99.06%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.70 ,  TOTAL =      214.8 SECONDS (    3.6 MIN)
+ WALL CLOCK TIME:   STEP =      1.68 ,  TOTAL =      216.8 SECONDS (    3.6 MIN)
+ CPU UTILIZATION:   STEP =    100.97%,  TOTAL =      99.07%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.68 ,  TOTAL =      217.5 SECONDS (    3.6 MIN)
+ WALL CLOCK TIME:   STEP =      2.69 ,  TOTAL =      219.5 SECONDS (    3.7 MIN)
+ CPU UTILIZATION:   STEP =     99.58%,  TOTAL =      99.08%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS 118.481
+ LINEAR INTERPOLATION GIVES ANGLE        118.589
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0001685 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.039 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0000951 BOHR
+
+ CONSTRAINED OPTIMIZATION POINT  22 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7093062769   0.2760673137   0.3585260546
+ C           6.0  -0.7535302629   1.6274036320  -0.0738545266
+ C           6.0   0.4282598025  -0.6443386992  -0.0474181145
+ H           1.0  -1.6765385844  -0.1953679918   0.5338310361
+ H           1.0  -1.6897502495   2.1729763197  -0.1185891844
+ H           1.0   0.0726802573   2.0694574252  -0.6224724548
+ H           1.0   0.2375493385  -1.1482887732  -1.0025181853
+ H           1.0   1.3669889589  -0.0886127006  -0.1441295759
+ H           1.0   0.5859066234  -1.4220983583   0.7057722525
+ H           1.0  -0.4192757847   0.9280214123   1.3779708890
+ F           9.0  -0.2409750049   2.2904124842   1.5979029497
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =      217.5 SECONDS (    3.6 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      219.5 SECONDS (    3.7 MIN)
+ CPU UTILIZATION:   STEP =    126.24%,  TOTAL =      99.08%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27376247E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439494
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.78 ,  TOTAL =      219.3 SECONDS (    3.7 MIN)
+ WALL CLOCK TIME:   STEP =      1.77 ,  TOTAL =      221.3 SECONDS (    3.7 MIN)
+ CPU UTILIZATION:   STEP =    100.66%,  TOTAL =      99.09%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.282608905  -218.282608905   0.000025677   0.000011162
+   2  1  0  -218.282608907    -0.000000002   0.000007114   0.000005300
+   3  2  0  -218.282608907     0.000000000   0.000004637   0.000002249
+   4  3  0  -218.282608907     0.000000000   0.000002445   0.000001954
+   5  4  0  -218.282608907     0.000000000   0.000000340   0.000000293
+   6  5  0  -218.282608907     0.000000000   0.000000137   0.000000077
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =       7.26 SECONDS (       1.21 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =       6.04 SECONDS (       1.01 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.02 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826089068 AFTER   6 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7220087045
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000259569
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =      7.28 ,  TOTAL =      226.6 SECONDS (    3.8 MIN)
+ WALL CLOCK TIME:   STEP =      7.30 ,  TOTAL =      228.6 SECONDS (    3.8 MIN)
+ CPU UTILIZATION:   STEP =     99.77%,  TOTAL =      99.12%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.84 ,  TOTAL =      228.4 SECONDS (    3.8 MIN)
+ WALL CLOCK TIME:   STEP =      1.85 ,  TOTAL =      230.4 SECONDS (    3.8 MIN)
+ CPU UTILIZATION:   STEP =     99.55%,  TOTAL =      99.12%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.88 ,  TOTAL =      231.3 SECONDS (    3.9 MIN)
+ WALL CLOCK TIME:   STEP =      2.88 ,  TOTAL =      233.3 SECONDS (    3.9 MIN)
+ CPU UTILIZATION:   STEP =     99.94%,  TOTAL =      99.13%
+
+ WARNING! POSITIVE DEFINITENESS ENDANGERED IN BFGS UPDATE OF HESSIAN. THIS MAY CAUSE TROUBLE LATER....
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.039
+ LINEAR INTERPOLATION GIVES ANGLE         -0.008
+
+ INTERPOLATION BECOMES EXTRAPOLATION SKIPPING INTERPOLATION THIS STEP
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826089 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0002166 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =       114.292 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.2355375 BOHR
+
+ CONSTRAINED OPTIMIZATION POINT  23 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7137222724   0.2757425188   0.3529462909
+ C           6.0  -0.7576361376   1.6226873337  -0.0811386578
+ C           6.0   0.4292446422  -0.6445460268  -0.0452564092
+ H           1.0  -1.6377558676  -0.1748333156   0.5390471743
+ H           1.0  -1.6494307614   2.1513791640  -0.1109440875
+ H           1.0   0.0566687489   2.0606931964  -0.6060178897
+ H           1.0   0.2363433174  -1.1505946127  -1.0043541822
+ H           1.0   1.3594726961  -0.0942100527  -0.1435228612
+ H           1.0   0.5847231152  -1.4092798099   0.6941514980
+ H           1.0  -0.4033247181   1.0261515859   1.3971736442
+ F           9.0  -0.2398818915   2.2887824938   1.6027706571
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =      231.3 SECONDS (    3.9 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      233.3 SECONDS (    3.9 MIN)
+ CPU UTILIZATION:   STEP =    128.81%,  TOTAL =      99.13%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27569519E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8465338
+       1694 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.80 ,  TOTAL =      233.1 SECONDS (    3.9 MIN)
+ WALL CLOCK TIME:   STEP =      1.80 ,  TOTAL =      235.1 SECONDS (    3.9 MIN)
+ CPU UTILIZATION:   STEP =     99.84%,  TOTAL =      99.14%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.269067667  -218.269067667   0.045105581   0.017630625
+   2  1  0  -218.273681638    -0.004613971   0.010711605   0.009623739
+   3  2  0  -218.274680497    -0.000998859   0.008581501   0.002323041
+   4  3  0  -218.274714904    -0.000034407   0.003451833   0.002312869
+   5  4  0  -218.274774915    -0.000060011   0.001062836   0.000775619
+   6  5  0  -218.274781742    -0.000006827   0.000278606   0.000170566
+   7  6  0  -218.274782172    -0.000000431   0.000124403   0.000053807
+   8  7  0  -218.274782218    -0.000000046   0.000016510   0.000011244
+   9  8  0  -218.274782220    -0.000000002   0.000003415   0.000002024
+  10  9  0  -218.274782220     0.000000000   0.000001339   0.000000802
+  11 10  0  -218.274782220     0.000000000   0.000000171   0.000000150
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =      12.56 SECONDS (       1.14 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =      10.32 SECONDS (       0.94 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.02 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2747822199 AFTER  11 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7602519868
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       33.9999918971
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =     12.58 ,  TOTAL =      245.7 SECONDS (    4.1 MIN)
+ WALL CLOCK TIME:   STEP =     12.58 ,  TOTAL =      247.7 SECONDS (    4.1 MIN)
+ CPU UTILIZATION:   STEP =    100.01%,  TOTAL =      99.18%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.16 ,  TOTAL =      247.8 SECONDS (    4.1 MIN)
+ WALL CLOCK TIME:   STEP =      2.16 ,  TOTAL =      249.9 SECONDS (    4.2 MIN)
+ CPU UTILIZATION:   STEP =    100.04%,  TOTAL =      99.19%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.88 ,  TOTAL =      250.7 SECONDS (    4.2 MIN)
+ WALL CLOCK TIME:   STEP =      2.86 ,  TOTAL =      252.7 SECONDS (    4.2 MIN)
+ CPU UTILIZATION:   STEP =    100.56%,  TOTAL =      99.20%
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS 114.292
+ LINEAR INTERPOLATION GIVES ANGLE         -0.978
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2747822 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0176218 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =         0.403 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.0010051 BOHR
+
+ ......ENERGY IS GOING UP......
+
+ CONSTRAINED OPTIMIZATION POINT  24 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7092657608   0.2761004740   0.3585038739
+ C           6.0  -0.7534997893   1.6273574702  -0.0738510542
+ C           6.0   0.4282499125  -0.6443322356  -0.0474275338
+ H           1.0  -1.6769855484  -0.1955791822   0.5339804829
+ H           1.0  -1.6902409645   2.1732740343  -0.1185561713
+ H           1.0   0.0728250107   2.0695194065  -0.6226117520
+ H           1.0   0.2375557702  -1.1482740906  -1.0025143659
+ H           1.0   1.3670931954  -0.0885417440  -0.1441664542
+ H           1.0   0.5859223950  -1.4222387970   0.7059036481
+ H           1.0  -0.4193315088   0.9279698302   1.3780544570
+ F           9.0  -0.2409752794   2.2904143752   1.5979087826
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.00 ,  TOTAL =      250.7 SECONDS (    4.2 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      252.7 SECONDS (    4.2 MIN)
+ CPU UTILIZATION:   STEP =      0.00%,  TOTAL =      99.20%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27375140E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8439077
+       1689 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      2.06 ,  TOTAL =      252.8 SECONDS (    4.2 MIN)
+ WALL CLOCK TIME:   STEP =      2.06 ,  TOTAL =      254.8 SECONDS (    4.2 MIN)
+ CPU UTILIZATION:   STEP =     99.85%,  TOTAL =      99.20%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.276816038  -218.276816038   0.044250400   0.023044438
+   2  1  0  -218.281349676    -0.004533637   0.012245020   0.014177146
+   3  2  0  -218.282486188    -0.001136513   0.009311331   0.002388010
+   4  3  0  -218.282489902    -0.000003714   0.004503611   0.004480278
+   5  4  0  -218.282602081    -0.000112179   0.000964553   0.000738092
+   6  5  0  -218.282607401    -0.000005320   0.000290626   0.000165005
+   7  6  0  -218.282607837    -0.000000436   0.000135347   0.000051291
+   8  7  0  -218.282607880    -0.000000043   0.000020912   0.000011886
+   9  8  0  -218.282607883    -0.000000003   0.000003144   0.000002044
+  10  9  0  -218.282607883     0.000000000   0.000001391   0.000000943
+  11 10  0  -218.282607883     0.000000000   0.000000271   0.000000184
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =      13.26 SECONDS (       1.21 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =      10.90 SECONDS (       0.99 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.10 SECONDS (       0.01 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2826078831 AFTER  11 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7215396487
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       34.0000258789
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =     13.36 ,  TOTAL =      266.1 SECONDS (    4.4 MIN)
+ WALL CLOCK TIME:   STEP =     13.35 ,  TOTAL =      268.2 SECONDS (    4.5 MIN)
+ CPU UTILIZATION:   STEP =    100.04%,  TOTAL =      99.25%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.70 ,  TOTAL =      267.8 SECONDS (    4.5 MIN)
+ WALL CLOCK TIME:   STEP =      1.68 ,  TOTAL =      269.8 SECONDS (    4.5 MIN)
+ CPU UTILIZATION:   STEP =    100.93%,  TOTAL =      99.26%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.78 ,  TOTAL =      270.6 SECONDS (    4.5 MIN)
+ WALL CLOCK TIME:   STEP =      2.78 ,  TOTAL =      272.6 SECONDS (    4.5 MIN)
+ CPU UTILIZATION:   STEP =     99.84%,  TOTAL =      99.26%
+
+ WARNING! POSITIVE DEFINITENESS ENDANGERED IN BFGS UPDATE OF HESSIAN. THIS MAY CAUSE TROUBLE LATER....
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS   0.403
+ LINEAR INTERPOLATION GIVES ANGLE          0.319
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2826079 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0010945 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =       131.492 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.2547018 BOHR
+
+ CONSTRAINED OPTIMIZATION POINT  25 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7131566397   0.2758868050   0.3528265896
+ C           6.0  -0.7592775268   1.6209960830  -0.0811546031
+ C           6.0   0.4290723366  -0.6441548361  -0.0462433489
+ H           1.0  -1.6457013483  -0.1790032571   0.5391429101
+ H           1.0  -1.6521445113   2.1521713893  -0.1116920819
+ H           1.0   0.0728415065   2.0688291481  -0.6131070449
+ H           1.0   0.2372683485  -1.1482129546  -0.9978707141
+ H           1.0   1.3580974864  -0.0950134675  -0.1423783405
+ H           1.0   0.5862329876  -1.4147080653   0.6998152813
+ H           1.0  -0.3999656986   1.0458841003   1.3884696073
+ F           9.0  -0.2396204534   2.2884175661   1.6036470205
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =      270.6 SECONDS (    4.5 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      272.6 SECONDS (    4.5 MIN)
+ CPU UTILIZATION:   STEP =    131.44%,  TOTAL =      99.26%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27730626E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8457070
+       1693 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.94 ,  TOTAL =      272.6 SECONDS (    4.5 MIN)
+ WALL CLOCK TIME:   STEP =      1.95 ,  TOTAL =      274.6 SECONDS (    4.6 MIN)
+ CPU UTILIZATION:   STEP =     99.56%,  TOTAL =      99.27%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.268370470  -218.268370470   0.052256104   0.019149422
+   2  1  0  -218.274285210    -0.005914740   0.012338407   0.010574720
+   3  2  0  -218.275520905    -0.001235695   0.009844705   0.002713257
+   4  3  0  -218.275579219    -0.000058315   0.003585574   0.002711291
+   5  4  0  -218.275644500    -0.000065280   0.001144455   0.000864325
+   6  5  0  -218.275652756    -0.000008256   0.000293863   0.000182618
+   7  6  0  -218.275653223    -0.000000467   0.000129698   0.000062679
+   8  7  0  -218.275653275    -0.000000052   0.000018459   0.000013064
+   9  8  0  -218.275653277    -0.000000002   0.000003269   0.000002019
+  10  9  0  -218.275653277     0.000000000   0.000001335   0.000000931
+  11 10  0  -218.275653277     0.000000000   0.000000132   0.000000141
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =      13.32 SECONDS (       1.21 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =      11.02 SECONDS (       1.00 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.04 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2756532774 AFTER  11 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7529285939
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       33.9999855527
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =     13.36 ,  TOTAL =      285.9 SECONDS (    4.8 MIN)
+ WALL CLOCK TIME:   STEP =     13.36 ,  TOTAL =      288.0 SECONDS (    4.8 MIN)
+ CPU UTILIZATION:   STEP =     99.97%,  TOTAL =      99.30%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.70 ,  TOTAL =      287.6 SECONDS (    4.8 MIN)
+ WALL CLOCK TIME:   STEP =      1.70 ,  TOTAL =      289.7 SECONDS (    4.8 MIN)
+ CPU UTILIZATION:   STEP =    100.02%,  TOTAL =      99.30%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.72 ,  TOTAL =      290.4 SECONDS (    4.8 MIN)
+ WALL CLOCK TIME:   STEP =      2.73 ,  TOTAL =      292.4 SECONDS (    4.9 MIN)
+ CPU UTILIZATION:   STEP =     99.71%,  TOTAL =      99.31%
+
+ WARNING! POSITIVE DEFINITENESS ENDANGERED IN BFGS UPDATE OF HESSIAN. THIS MAY CAUSE TROUBLE LATER....
+
+ ANGLE TO PREVIOUS OPTIMIZATION POINT IS 131.492
+ LINEAR INTERPOLATION GIVES ANGLE         -5.260
+
+ INTERPOLATION TOO FAR FROM END POINTS. ACUT =   5.000
+ SKIPPING INTERPOLATION THIS STEP
+
+ CURRENT OPTIMIZATION POINT :
+ ENERGY                                 =  -218.2756533 HARTREE
+ MASS WEIGHTED TANGENT GRADIENT NORM    =     0.0280531 HARTREE/BOHR-SQRT(AMU)
+ NEXT GEOMETRY STEP HAS PREDICTED ANGLE =        68.749 DEGREES
+ AND CARTESIAN RMS DISPLACEMENT         =     0.1921993 BOHR
+
+ ......ENERGY IS GOING UP......
+
+ CONSTRAINED OPTIMIZATION POINT  26 FOR PATH POINT   1
+ COORDINATES OF SYMMETRY UNIQUE ATOMS (ANGS)
+   ATOM   CHARGE       X              Y              Z
+ ------------------------------------------------------------
+ C           6.0  -0.7097574491   0.2792692090   0.3485994183
+ C           6.0  -0.7552113535   1.6137526538  -0.0833823696
+ C           6.0   0.4278670896  -0.6436947921  -0.0460020744
+ H           1.0  -1.6914019501  -0.2006868087   0.5549217304
+ H           1.0  -1.7128418134   2.1883636410  -0.1099513691
+ H           1.0   0.0758077768   2.0692799026  -0.6141372497
+ H           1.0   0.2362793293  -1.1500668753  -1.0022670034
+ H           1.0   1.3719793657  -0.0863077692  -0.1454367705
+ H           1.0   0.5880962833  -1.4256908603   0.7098895415
+ H           1.0  -0.3954110537   1.0859333889   1.4044806383
+ F           9.0  -0.2391121119   2.2878667793   1.6057087334
+ ...... END OF ONE-ELECTRON INTEGRALS ......
+
+ CPU        TIME:   STEP =      0.02 ,  TOTAL =      290.4 SECONDS (    4.8 MIN)
+ WALL CLOCK TIME:   STEP =      0.02 ,  TOTAL =      292.4 SECONDS (    4.9 MIN)
+ CPU UTILIZATION:   STEP =    131.44%,  TOTAL =      99.31%
+
+ LOG10 OF CONDITION NUMBER OF OVERLAP MATRIX IS:  3.27738497E+00
+ TOTAL NUMBER OF NONZERO TWO-ELECTRON INTEGRALS =             8410781
+       1683 INTEGRAL RECORDS WERE STORED ON DISK FILE  8.
+ ...... END OF TWO-ELECTRON INTEGRALS .....
+
+ CPU        TIME:   STEP =      1.80 ,  TOTAL =      292.2 SECONDS (    4.9 MIN)
+ WALL CLOCK TIME:   STEP =      1.79 ,  TOTAL =      294.2 SECONDS (    4.9 MIN)
+ CPU UTILIZATION:   STEP =    100.84%,  TOTAL =      99.32%
+
+ ITER EX DEM  TOTAL ENERGY      E CHANGE  DENSITY CHANGE    DIIS ERROR
+          * * *   INITIATING DIIS PROCEDURE   * * *
+   1  0  0  -218.274687819  -218.274687819   0.019870174   0.011995921
+   2  1  0  -218.276704933    -0.002017114   0.009191035   0.007736502
+   3  2  0  -218.277216659    -0.000511726   0.005201060   0.002796996
+   4  3  0  -218.277251541    -0.000034881   0.001615265   0.001545617
+   5  4  0  -218.277261247    -0.000009706   0.000649849   0.000298097
+   6  5  0  -218.277262746    -0.000001499   0.000242703   0.000101545
+   7  6  0  -218.277262892    -0.000000146   0.000078635   0.000054377
+   8  7  0  -218.277262924    -0.000000032   0.000015854   0.000005912
+   9  8  0  -218.277262925    -0.000000001   0.000001823   0.000001718
+  10  9  0  -218.277262925     0.000000000   0.000000334   0.000000219
+  11 10  0  -218.277262925     0.000000000   0.000000158   0.000000074
+
+          -----------------
+          DENSITY CONVERGED
+          -----------------
+     TIME TO FORM FOCK OPERATORS =      13.12 SECONDS (       1.19 SEC/ITER)
+     OF THE ABOVE TIME, DFT PART =      10.76 SECONDS (       0.98 SEC/ITER)
+     TIME TO SOLVE SCF EQUATIONS =       0.02 SECONDS (       0.00 SEC/ITER)
+
+ FINAL ENERGY IS     -218.2772629250 AFTER  11 ITERATIONS
+ DFT EXCHANGE + CORRELATION ENERGY IS      -23.7062024763
+ INTEGRATED TOTAL ELECTRON NUMBER  IS       33.9999642281
+
+ ...... END OF DFT CALCULATION ......
+
+ CPU        TIME:   STEP =     13.14 ,  TOTAL =      305.3 SECONDS (    5.1 MIN)
+ WALL CLOCK TIME:   STEP =     13.16 ,  TOTAL =      307.3 SECONDS (    5.1 MIN)
+ CPU UTILIZATION:   STEP =     99.87%,  TOTAL =      99.34%
+ ..... END OF 1-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      1.88 ,  TOTAL =      307.2 SECONDS (    5.1 MIN)
+ WALL CLOCK TIME:   STEP =      1.87 ,  TOTAL =      309.2 SECONDS (    5.2 MIN)
+ CPU UTILIZATION:   STEP =    100.44%,  TOTAL =      99.35%
+
+ THE MINIMUM MEMORY REQUIRED FOR THIS RUN IS     119951 WORDS.
+ USING    1095471 WORDS OF MEMORY.
+
+ ...... END OF 2-ELECTRON GRADIENT ......
+
+ CPU        TIME:   STEP =      2.76 ,  TOTAL =      310.0 SECONDS (    5.2 MIN)
+ WALL CLOCK TIME:   STEP =      2.76 ,  TOTAL =      312.0 SECONDS (    5.2 MIN)
+ CPU UTILIZATION:   STEP =     99.91%,  TOTAL =      99.35%
+
+ RADIUS IN CIRCLE OPTIMIZATION 0.2046002 DEVIATES SIGNIFICANTLY FROM CONSTRAIN CONDITION 0.1500000
+ IT IS POSSIBLE THAT THE NEXT IRC POINT IS CLOSE TO A MINIMUM
+
+ ADDRESS 0x09331E2C HAS INITIATED PROGRAM ABORT BECAUSE OF FATAL ERROR(S)
+
+ CPU        TIME:   STEP =      0.00 ,  TOTAL =      310.0 SECONDS (    5.2 MIN)
+ WALL CLOCK TIME:   STEP =      0.00 ,  TOTAL =      312.0 SECONDS (    5.2 MIN)
+ CPU UTILIZATION:   STEP =      0.00%,  TOTAL =      99.35%
+
+     1099068 WORDS OF    DYNAMIC MEMORY USED
+      250062 BYTES OF    HEAP MEMORY    USED,      105655 BYTES REMAIN IN USE
+ EXECUTION OF FIREFLY TERMINATED ABNORMALLY AT 16:49:29 22-APR-2017    
